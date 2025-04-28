@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -7,6 +6,7 @@ import { Switch } from "@/components/ui/switch";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "@/components/ui/sonner";
+import { calculateTokenIssuanceFee } from '../utils/feeCalculations';
 
 type TokenDetails = {
   name: string;
@@ -82,6 +82,8 @@ const TokenIssuanceWizard = ({ onComplete }: { onComplete?: () => void }) => {
       if (onComplete) onComplete();
     }, 2000);
   };
+  
+  const platformFee = calculateTokenIssuanceFee(tokenDetails.supply);
   
   return (
     <div className="wizard-container">
@@ -300,8 +302,14 @@ const TokenIssuanceWizard = ({ onComplete }: { onComplete?: () => void }) => {
                 </span>
               </div>
               <div className="flex justify-between py-2 border-b">
-                <span className="text-muted-foreground">Issuance Fee</span>
-                <span className="font-medium text-elven">5 EGLD + Gas</span>
+                <span className="text-muted-foreground">Platform Fee (0.01%)</span>
+                <span className="font-medium">
+                  {platformFee.toLocaleString()} {tokenDetails.ticker}
+                </span>
+              </div>
+              <div className="flex justify-between py-2 border-b">
+                <span className="text-muted-foreground">EGLD Issuance Fee</span>
+                <span className="font-medium">~5 EGLD + Gas</span>
               </div>
             </CardContent>
             <CardFooter>

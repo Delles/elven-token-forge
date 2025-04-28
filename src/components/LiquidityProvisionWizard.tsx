@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -6,6 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "@/components/ui/sonner";
+import { calculateLpFee } from '../utils/feeCalculations';
 
 type LiquidityDetails = {
   ownToken: string;
@@ -90,6 +90,8 @@ const LiquidityProvisionWizard = ({ onComplete }: { onComplete?: () => void }) =
     
     return (pairingAmount / ownAmount).toFixed(6);
   };
+  
+  const lpFee = calculateLpFee(liquidityDetails.ownTokenAmount);
   
   return (
     <div className="wizard-container">
@@ -259,8 +261,14 @@ const LiquidityProvisionWizard = ({ onComplete }: { onComplete?: () => void }) =
                   1 {liquidityDetails.ownToken} = {calculateInitialPrice()} {liquidityDetails.pairingToken}
                 </span>
               </div>
+              <div className="flex justify-between py-2 border-b text-warning">
+                <span className="text-muted-foreground">Platform Fee (0.1%)</span>
+                <span className="font-medium">
+                  {lpFee.toLocaleString()} {liquidityDetails.ownToken}
+                </span>
+              </div>
               <div className="flex justify-between py-2 border-b">
-                <span className="text-muted-foreground">Fee</span>
+                <span className="text-muted-foreground">Transaction Fee</span>
                 <span className="font-medium">Gas</span>
               </div>
             </CardContent>
