@@ -4,7 +4,19 @@ export const calculateTokenIssuanceFee = (totalSupply: string): number => {
   return supply * 0.0001; // 0.01%
 };
 
-export const calculateLpFee = (tokenAmount: string): number => {
-  const amount = parseFloat(tokenAmount) || 0;
-  return amount * 0.001; // 0.1%
+export const calculateLpFee = (tokenAmount: string, pairingAmount: string): number => {
+  const tokenValue = parseFloat(tokenAmount) || 0;
+  const pairingValue = parseFloat(pairingAmount) || 0;
+  
+  // Calculate total value of liquidity provided
+  const totalLiquidity = Math.sqrt(tokenValue * pairingValue);
+  return totalLiquidity * 0.001; // 0.1% of LP tokens
+};
+
+export const calculateExpectedLpTokens = (tokenAmount: string, pairingAmount: string): number => {
+  const tokenValue = parseFloat(tokenAmount) || 0;
+  const pairingValue = parseFloat(pairingAmount) || 0;
+  
+  // Initial LP tokens are calculated as the geometric mean of the amounts
+  return Math.sqrt(tokenValue * pairingValue);
 };

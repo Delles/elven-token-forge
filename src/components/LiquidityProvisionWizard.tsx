@@ -5,7 +5,8 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "@/components/ui/sonner";
-import { calculateLpFee } from '../utils/feeCalculations';
+import { Coins } from "lucide-react";
+import { calculateLpFee, calculateExpectedLpTokens } from '../utils/feeCalculations';
 
 type LiquidityDetails = {
   ownToken: string;
@@ -91,8 +92,16 @@ const LiquidityProvisionWizard = ({ onComplete }: { onComplete?: () => void }) =
     return (pairingAmount / ownAmount).toFixed(6);
   };
   
-  const lpFee = calculateLpFee(liquidityDetails.ownTokenAmount);
+  const expectedLpTokens = calculateExpectedLpTokens(
+    liquidityDetails.ownTokenAmount,
+    liquidityDetails.pairingTokenAmount
+  );
   
+  const lpFee = calculateLpFee(
+    liquidityDetails.ownTokenAmount,
+    liquidityDetails.pairingTokenAmount
+  );
+
   return (
     <div className="wizard-container">
       <div className="wizard-header">
@@ -261,10 +270,19 @@ const LiquidityProvisionWizard = ({ onComplete }: { onComplete?: () => void }) =
                   1 {liquidityDetails.ownToken} = {calculateInitialPrice()} {liquidityDetails.pairingToken}
                 </span>
               </div>
-              <div className="flex justify-between py-2 border-b text-warning">
-                <span className="text-muted-foreground">Platform Fee (0.1%)</span>
+              <div className="flex items-center justify-between py-2 border-b bg-muted/50">
+                <div className="flex items-center gap-2">
+                  <Coins className="h-4 w-4 text-primary" />
+                  <span className="text-muted-foreground">Expected LP Tokens</span>
+                </div>
                 <span className="font-medium">
-                  {lpFee.toLocaleString()} {liquidityDetails.ownToken}
+                  {expectedLpTokens.toLocaleString()} LP
+                </span>
+              </div>
+              <div className="flex justify-between py-2 border-b text-warning">
+                <span className="text-muted-foreground">Platform Fee (0.1% in LP)</span>
+                <span className="font-medium">
+                  {lpFee.toLocaleString()} LP
                 </span>
               </div>
               <div className="flex justify-between py-2 border-b">
@@ -274,7 +292,7 @@ const LiquidityProvisionWizard = ({ onComplete }: { onComplete?: () => void }) =
             </CardContent>
             <CardFooter>
               <p className="text-xs text-muted-foreground">
-                You will receive LP tokens representing your share of the pool. These can be used to withdraw your liquidity later.
+                You will receive {(expectedLpTokens - lpFee).toLocaleString()} LP tokens representing your share of the pool. These can be used to withdraw your liquidity later.
               </p>
             </CardFooter>
           </Card>
