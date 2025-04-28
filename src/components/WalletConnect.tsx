@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { toast } from "@/components/ui/sonner";
@@ -10,6 +11,7 @@ const WalletConnect = () => {
   const [isConnected, setIsConnected] = useState(false);
   const [address, setAddress] = useState('');
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const navigate = useNavigate();
   
   const connectWallet = (type: 'extension' | 'web' | 'maiar' | 'ledger') => {
     // In a real app, we would use erdjs to connect the wallet
@@ -20,6 +22,7 @@ const WalletConnect = () => {
       setIsConnected(true);
       setIsDialogOpen(false);
       toast.success("Wallet connected successfully!");
+      navigate('/dashboard');  // Redirect to dashboard after connection
     }, 1000);
   };
   
@@ -27,6 +30,7 @@ const WalletConnect = () => {
     setIsConnected(false);
     setAddress('');
     toast.info("Wallet disconnected");
+    navigate('/');  // Redirect to home after disconnecting
   };
   
   return (
