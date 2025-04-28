@@ -4,7 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import NavBar from '@/components/NavBar';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
+import { ArrowRight } from 'lucide-react';
 
 const Index = () => {
   const navigate = useNavigate();
@@ -13,117 +14,92 @@ const Index = () => {
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-background to-secondary">
       <NavBar />
       
-      <main className="flex-1 container py-8 px-4 md:py-12">
+      <main className="flex-1">
         <section className="py-12 md:py-24 lg:py-32 xl:py-48">
           <div className="container px-4 md:px-6">
-            <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
-              <div className="flex flex-col justify-center space-y-4">
-                <div className="space-y-2">
-                  <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl bg-clip-text text-transparent bg-elven-gradient animate-pulse-subtle">
-                    Elven Token Forge
-                  </h1>
-                  <p className="max-w-[600px] text-gray-500 md:text-xl dark:text-gray-400">
-                    The simplest way to create and launch ESDT tokens on the MultiversX blockchain. No coding required.
-                  </p>
-                </div>
-                <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                  <Button 
-                    className="bg-elven-gradient hover:opacity-90" 
-                    size="lg" 
-                    onClick={() => navigate('/issue-token')}
-                  >
-                    Start Forging Your Token
-                  </Button>
-                  <Button 
-                    variant="outline" 
-                    size="lg" 
-                    onClick={() => navigate('/dashboard')}
-                  >
-                    View Dashboard
-                  </Button>
-                </div>
+            <div className="flex flex-col items-center text-center space-y-8">
+              <div className="space-y-4 max-w-3xl">
+                <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl bg-clip-text text-transparent bg-elven-gradient animate-pulse-subtle">
+                  Forge Your Future in Token Creation
+                </h1>
+                <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
+                  The most intuitive platform to create and manage ESDT tokens on the MultiversX blockchain. 
+                  No coding required, just pure innovation.
+                </p>
               </div>
-              <div className="mx-auto flex w-full items-center justify-center p-4 sm:p-8">
-                <Card className="border border-elven-muted/30 shadow-lg hover:shadow-xl transition-shadow mx-auto">
-                  <CardHeader className="pb-3">
-                    <CardTitle className="text-2xl">Create New Token</CardTitle>
-                    <CardDescription>
-                      Launch your own ESDT token on MultiversX
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="pt-2">
-                    <ul className="space-y-2 text-sm">
-                      <li className="flex items-start">
-                        <div className="mr-2 h-5 w-5 text-elven">✓</div>
-                        <span>Custom token name & ticker</span>
-                      </li>
-                      <li className="flex items-start">
-                        <div className="mr-2 h-5 w-5 text-elven">✓</div>
-                        <span>Set initial supply & decimals</span>
-                      </li>
-                      <li className="flex items-start">
-                        <div className="mr-2 h-5 w-5 text-elven">✓</div>
-                        <span>Configure special properties</span>
-                      </li>
-                      <li className="flex items-start">
-                        <div className="mr-2 h-5 w-5 text-elven">✓</div>
-                        <span>One-click token issuance</span>
-                      </li>
-                      <li className="flex items-start">
-                        <div className="mr-2 h-5 w-5 text-elven">✓</div>
-                        <span>Liquidity & token management</span>
-                      </li>
-                    </ul>
-                  </CardContent>
-                  <CardFooter className="pt-4">
-                    <Button 
-                      className="w-full bg-elven-gradient hover:opacity-90"
-                      onClick={() => navigate('/issue-token')}
-                    >
-                      Issue New Token
-                    </Button>
-                  </CardFooter>
-                </Card>
-              </div>
+              <Button 
+                className="bg-elven-gradient hover:opacity-90 group"
+                size="lg"
+                onClick={() => navigate('/dashboard')}
+              >
+                Start Creating
+                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Button>
             </div>
           </div>
         </section>
 
-        <section className="py-12 md:py-24 lg:py-32">
+        <section className="py-16 bg-elven-muted/10">
           <div className="container px-4 md:px-6">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Complete Token Management Solution</h2>
-                <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed dark:text-gray-400">
-                  Everything you need to create, launch, and manage your MultiversX ESDT tokens
-                </p>
-              </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <Card className="bg-white/50 backdrop-blur-sm border-elven-muted/30">
+                <CardContent className="pt-6">
+                  <div className="rounded-full w-12 h-12 bg-elven-gradient flex items-center justify-center mb-4">
+                    <span className="text-white text-xl font-bold">1</span>
+                  </div>
+                  <h3 className="text-xl font-semibold mb-2">Connect Wallet</h3>
+                  <p className="text-muted-foreground">
+                    Start by connecting your MultiversX wallet to access the token forging features.
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white/50 backdrop-blur-sm border-elven-muted/30">
+                <CardContent className="pt-6">
+                  <div className="rounded-full w-12 h-12 bg-elven-gradient flex items-center justify-center mb-4">
+                    <span className="text-white text-xl font-bold">2</span>
+                  </div>
+                  <h3 className="text-xl font-semibold mb-2">Design Your Token</h3>
+                  <p className="text-muted-foreground">
+                    Customize your token's properties, supply, and special features through our intuitive interface.
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white/50 backdrop-blur-sm border-elven-muted/30">
+                <CardContent className="pt-6">
+                  <div className="rounded-full w-12 h-12 bg-elven-gradient flex items-center justify-center mb-4">
+                    <span className="text-white text-xl font-bold">3</span>
+                  </div>
+                  <h3 className="text-xl font-semibold mb-2">Launch & Manage</h3>
+                  <p className="text-muted-foreground">
+                    Deploy your token and access powerful management tools from your dashboard.
+                  </p>
+                </CardContent>
+              </Card>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Token Creation</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p>Issue custom ESDT tokens with your chosen name, ticker, supply, and special properties like mintable, burnable, and more.</p>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardHeader>
-                  <CardTitle>Liquidity Provision</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p>Easily create liquidity pools for your tokens, paired with EGLD or USDC, directly from your token dashboard.</p>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardHeader>
-                  <CardTitle>Token Management</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p>Manage your tokens with features like minting additional supply, burning tokens, and token airdrops.</p>
-                </CardContent>
-              </Card>
+          </div>
+        </section>
+
+        <section className="py-16">
+          <div className="container px-4 md:px-6">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+                Comprehensive Token Management
+              </h2>
+              <p className="mt-4 text-muted-foreground md:text-lg">
+                Everything you need to create and manage your MultiversX tokens
+              </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {features.map((feature, index) => (
+                <Card key={index} className="border border-elven-muted/30">
+                  <CardContent className="pt-6">
+                    <h3 className="font-semibold mb-2">{feature.title}</h3>
+                    <p className="text-sm text-muted-foreground">{feature.description}</p>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
           </div>
         </section>
@@ -133,5 +109,40 @@ const Index = () => {
     </div>
   );
 };
+
+const features = [
+  {
+    title: "Token Creation",
+    description: "Design and issue custom ESDT tokens with your chosen parameters",
+  },
+  {
+    title: "Supply Management",
+    description: "Mint additional tokens or burn excess supply as needed",
+  },
+  {
+    title: "Liquidity Tools",
+    description: "Easily provide and manage liquidity for your tokens",
+  },
+  {
+    title: "Token Distribution",
+    description: "Perform airdrops and manage token distributions efficiently",
+  },
+  {
+    title: "Role Management",
+    description: "Assign and manage special roles for your token",
+  },
+  {
+    title: "Transaction History",
+    description: "Track all operations related to your token",
+  },
+  {
+    title: "Analytics Dashboard",
+    description: "Monitor your token's performance and metrics",
+  },
+  {
+    title: "Security Features",
+    description: "Implement freezing and special transfer rules",
+  }
+];
 
 export default Index;
