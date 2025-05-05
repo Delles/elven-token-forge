@@ -94,6 +94,14 @@ export default {
 				'glow': {
 					'0%, 100%': { filter: 'brightness(100%)' },
 					'50%': { filter: 'brightness(120%)' },
+				},
+				'shimmer': {
+					'0%': { backgroundPosition: '-200% 0' },
+					'100%': { backgroundPosition: '200% 0' },
+				},
+				'scale-fade-in': {
+					'0%': { opacity: '0', transform: 'scale(0.95)' },
+					'100%': { opacity: '1', transform: 'scale(1)' },
 				}
 			},
 			animation: {
@@ -101,12 +109,17 @@ export default {
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'float': 'float 6s ease-in-out infinite',
 				'pulse-subtle': 'pulse-subtle 3s ease-in-out infinite',
-				'glow': 'glow 2s ease-in-out infinite'
+				'glow': 'glow 2s ease-in-out infinite',
+				'shimmer': 'shimmer 2s linear infinite',
+				'scale-fade-in': 'scale-fade-in 0.3s ease-out'
 			},
 			backgroundImage: {
 				'elven-gradient': 'linear-gradient(to right, #9b87f5, #6E59A5)',
 				'elven-gradient-vertical': 'linear-gradient(to bottom, #9b87f5, #6E59A5)',
 				'dark-elven-gradient': 'linear-gradient(to right, #1A1F2C, #403E43)',
+				'shimmer-gradient': 'linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 20%, rgba(255,255,255,0.5) 60%, rgba(255,255,255,0) 100%)',
+				'glass-gradient': 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)',
+				'glass-shine': 'linear-gradient(135deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 60%)',
 			}
 		}
 	},
