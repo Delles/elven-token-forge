@@ -72,6 +72,11 @@
     @apply border-border;
   }
 
+  html {
+    @apply scroll-smooth antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
@@ -97,11 +102,50 @@
     @apply text-2xl md:text-3xl;
     line-height: 1.3;
   }
+
+  button, a {
+    @apply transition-all duration-300;
+  }
 }
 
 @layer components {
+  /* Neo-Material UI Base Components */
+  .neo-panel {
+    @apply relative overflow-hidden rounded-xl bg-white/90 dark:bg-card/90 backdrop-blur-md border border-white/20 dark:border-white/10 shadow-neo;
+  }
+  
+  .neo-card {
+    @apply neo-panel p-6;
+  }
+  
+  .neo-button {
+    @apply relative overflow-hidden rounded-lg flex items-center justify-center font-medium shadow-neo-sm transition-all duration-300
+    bg-gradient-to-r from-primary/90 to-primary hover:from-primary hover:to-primary/90 text-primary-foreground 
+    dark:from-primary/80 dark:to-primary/70 dark:hover:from-primary/90 dark:hover:to-primary/80;
+  }
+  
+  .neo-button::after {
+    @apply content-[''] absolute inset-0 rounded-lg opacity-0 transition-opacity duration-500 ease-out pointer-events-none
+    bg-gradient-to-r from-transparent via-white/30 to-transparent;
+  }
+  
+  .neo-button:hover::after {
+    @apply opacity-100;
+    animation: shimmer 1.5s infinite;
+  }
+  
+  .neo-button:active {
+    @apply transform scale-[0.98] shadow-neo-sm;
+  }
+  
+  .neo-input {
+    @apply bg-white/70 dark:bg-secondary/50 border border-border/50 dark:border-border/30 rounded-lg backdrop-blur-sm
+    shadow-neo-inner focus-within:ring-2 focus-within:ring-primary/30 transition-all duration-200;
+  }
+
+  /* Original Wizard components */
   .wizard-container {
-    @apply max-w-3xl mx-auto p-6 rounded-2xl bg-white dark:bg-card shadow-lg border border-elven-muted/30;
+    @apply neo-panel max-w-3xl mx-auto p-6;
   }
   
   .wizard-step {
@@ -124,17 +168,18 @@
     @apply flex justify-between mt-8;
   }
   
-  /* Modern UI components */
+  /* Enhanced Neo-Material UI components */
   .glass-card {
-    @apply bg-white/70 dark:bg-card/70 backdrop-blur-xl border border-border/50 shadow-xl rounded-xl overflow-hidden;
+    @apply neo-panel shadow-xl;
   }
   
   .feature-card {
-    @apply relative overflow-hidden rounded-xl border border-border/40 bg-background/80 backdrop-blur-sm shadow-md hover:shadow-lg transition-all duration-300 p-6;
+    @apply neo-panel transition-all duration-300 p-6 hover:shadow-neo-lg group;
   }
   
   .feature-icon {
-    @apply w-12 h-12 rounded-xl bg-elven-muted/50 flex items-center justify-center text-elven mb-4;
+    @apply w-12 h-12 rounded-xl bg-elven-muted/30 dark:bg-elven-muted/20 flex items-center justify-center text-elven mb-4 
+    shadow-neo-inner group-hover:shadow-neo-sm group-hover:bg-elven-muted/40 dark:group-hover:bg-elven-muted/30 transition-all duration-300;
   }
   
   .gradient-text {
@@ -150,10 +195,65 @@
   }
   
   .highlight-badge {
-    @apply inline-flex items-center rounded-full border border-border/40 bg-elven-muted/30 px-2.5 py-0.5 text-xs font-semibold;
+    @apply inline-flex items-center rounded-full border border-border/40 bg-elven-muted/30 px-2.5 py-0.5 text-xs font-semibold
+    backdrop-blur-sm shadow-neo-sm;
   }
   
-  .neo-button {
-    @apply bg-elven-gradient hover:opacity-90 text-white font-medium px-6 py-2.5 rounded-lg shadow-lg transition-all duration-200;
+  /* Interactive Elements */
+  .interactive-hover {
+    @apply transition-transform duration-300 hover:translate-y-[-5px];
+  }
+  
+  .pulse-on-hover {
+    @apply hover:animate-pulse-subtle;
+  }
+  
+  .glow-effect {
+    @apply relative;
+  }
+  
+  .glow-effect::before {
+    @apply content-[""] absolute -inset-1 rounded-xl bg-gradient-to-r from-primary via-accent to-primary opacity-0 blur transition-opacity duration-500;
+  }
+  
+  .glow-effect:hover::before {
+    @apply opacity-30;
+  }
+  
+  /* Neo-Material specific effects */
+  .ambient-background {
+    @apply relative overflow-hidden;
+  }
+  
+  .ambient-background::before {
+    @apply content-[""] absolute inset-0 bg-ambient-gradient opacity-60 animate-ambient-light;
+  }
+  
+  .frosted-panel {
+    @apply bg-frosted-glass backdrop-blur-xl border border-white/20 dark:border-white/10 rounded-xl shadow-neo;
+  }
+  
+  .data-stream {
+    @apply relative overflow-hidden;
+  }
+  
+  .data-stream::after {
+    @apply content-[""] absolute inset-0 bg-data-flow opacity-0 bg-[length:200%_100%] transition-opacity duration-300;
+  }
+  
+  .data-stream:hover::after {
+    @apply opacity-100 animate-shimmer;
+  }
+  
+  .morphing-shape {
+    @apply bg-elven-gradient rounded-[60%_40%_30%_70%/60%_30%_70%_40%] animate-morph shadow-neo;
+  }
+  
+  .ripple-container {
+    @apply relative overflow-hidden;
+  }
+  
+  .ripple {
+    @apply absolute bg-white/30 rounded-full transform -translate-x-1/2 -translate-y-1/2 animate-ripple pointer-events-none;
   }
 }
