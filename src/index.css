@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -178,7 +179,7 @@
   
   .feature-icon {
     @apply w-12 h-12 rounded-xl bg-elven-muted/30 dark:bg-elven-muted/20 flex items-center justify-center text-elven mb-4 
-    shadow-neo-inner group-hover:shadow-neo-sm group-hover:bg-elven-muted/40 dark:group-hover:bg-elven-muted/30 transition-all duration-300;
+    shadow-neo-inner hover:shadow-neo-sm hover:bg-elven-muted/40 dark:hover:bg-elven-muted/30 transition-all duration-300;
   }
   
   .gradient-text {
