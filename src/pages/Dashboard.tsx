@@ -93,20 +93,20 @@ const Dashboard = () => {
             <main className="flex-1 container py-10 px-4 md:py-16 md:px-8 z-10 relative">
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 animate-fade-in">
                     <div>
-                        <div className="flex items-center gap-2 mb-3">
+                        <div className="flex items-center gap-2 mb-1">
                             <Badge variant="neo" className="text-xs font-medium">
                                 Dashboard
                             </Badge>
-                            <h1 className="text-3xl font-bold gradient-text">
-                                My Token Forge
-                            </h1>
                         </div>
+                        <h1 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary via-accent-glow-cyan to-accent-amethyst mb-3">
+                            My Token Forge
+                        </h1>
                         <p className="text-foreground/80 max-w-md">
-                            Manage your ESDT tokens on the MultiversX blockchain with advanced Neo-Material controls.
+                            Manage your ESDT tokens on the MultiversX blockchain with advanced controls.
                         </p>
                     </div>
                     <Button
-                        className="mt-6 md:mt-0 px-6 py-3 h-auto"
+                        className="mt-6 md:mt-0 px-6 py-3 h-auto bg-gradient-to-r from-primary to-accent-amethyst hover:brightness-110"
                         onClick={handleIssueNewToken}
                     >
                         <Plus className="h-4 w-4 mr-1" />
