@@ -16,19 +16,21 @@ const ProvideLiquidity = () => {
       <NavBar />
       
       <main className="flex-1 container py-8 px-4 md:py-12 relative z-10">
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center gap-2 mb-2">
-            <div className="w-10 h-10 rounded-xl bg-elven-gradient flex items-center justify-center shadow-neo">
-              <Coins className="text-white h-5 w-5" />
+        <div className="text-center mb-8 animate-fade-in">
+          <div className="inline-flex items-center justify-center gap-3 mb-3">
+            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-accent-glow-cyan to-accent-aurora-green flex items-center justify-center shadow-nm-md">
+              <Coins className="text-white h-6 w-6" strokeWidth={1.5} />
             </div>
-            <h1 className="text-3xl md:text-4xl font-bold gradient-text">Provide Liquidity</h1>
+            <h1 className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-accent-glow-cyan via-accent-aurora-green to-accent-amethyst">
+              Provide Liquidity
+            </h1>
           </div>
-          <p className="text-muted-foreground max-w-xl mx-auto">
+          <p className="text-muted-foreground/90 max-w-xl mx-auto backdrop-blur-sm px-4 py-2 rounded-full border border-white/5 shadow-nm-sm inline-block">
             Add token liquidity to xExchange and enable trading
           </p>
         </div>
         
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl mx-auto animate-fade-in" style={{animationDelay: "200ms"}}>
           <LiquidityProvisionWizard onComplete={() => navigate('/dashboard')} />
         </div>
       </main>

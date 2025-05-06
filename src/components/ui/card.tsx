@@ -10,7 +10,7 @@ const Card = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "neo-panel", // Using our updated neo-panel class for Neo-Material UI
+      "relative overflow-hidden rounded-xl bg-white/80 dark:bg-card/70 backdrop-blur-lg border border-white/5 dark:border-white/5 shadow-nm-md transition-all duration-300",
       className
     )}
     {...props}
@@ -51,7 +51,7 @@ const CardDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <p
     ref={ref}
-    className={cn("text-sm text-muted-foreground", className)}
+    className={cn("text-sm text-muted-foreground/90", className)}
     {...props}
   />
 ))
