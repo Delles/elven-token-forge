@@ -10,7 +10,7 @@ const Card = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "neo-panel", // Using our neo-panel class for Neo-Material UI
+      "neo-panel", // Using our updated neo-panel class for Neo-Material UI
       className
     )}
     {...props}

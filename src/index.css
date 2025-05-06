@@ -1,3 +1,4 @@
+
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
 
 @tailwind base;
@@ -186,12 +187,12 @@
     }
 
     .feature-card {
-        /* Styles likely applied directly in component now, but update base class */
-        @apply neo-panel p-6 hover:shadow-nm-lg transition-shadow duration-300; /* Use nm shadow */
+        /* Removing group from @apply */
+        @apply neo-panel p-6 hover:shadow-nm-lg transition-shadow duration-300; 
     }
 
     .feature-icon {
-        /* Styles likely applied directly in component now, but update base class */
+        /* Removing direct reference to group-hover */
         @apply w-12 h-12 rounded-xl bg-base-off-white/10 dark:bg-base-charcoal/20 flex items-center justify-center text-accent-amethyst mb-4 
         shadow-nm-inner-soft hover:shadow-nm-sm hover:bg-base-off-white/20 dark:hover:bg-base-charcoal/30 transition-all duration-300;
     }

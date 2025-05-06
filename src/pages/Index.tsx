@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import NavBar from "@/components/NavBar";
@@ -63,14 +64,15 @@ const Index = () => {
             <NavBar />
 
             <main className="flex-1">
-                {/* Hero Section */}
+                {/* Hero Section - Updated with Neo-Material UI */}
                 <section className="py-16 md:py-24 lg:py-32 relative overflow-hidden ambient-background">
-                    <div className="absolute inset-0 bg-gradient-to-br from-background to-secondary/30 z-0"></div>
+                    {/* Layered background with refined gradient */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-background/80 to-secondary/20 backdrop-blur-sm z-0"></div>
 
-                    {/* Decorative Neo-Material elements */}
-                    <div className="absolute top-1/3 right-[15%] w-72 h-72 rounded-[60%_40%_30%_70%/60%_30%_70%_40%] bg-gradient-to-br from-accent-amethyst/10 to-accent-glow-cyan/10 opacity-30 animate-morph blur-xl"></div>
-                    <div
-                        className="absolute bottom-1/3 left-[10%] w-80 h-80 rounded-full bg-accent-aurora-pink/5 opacity-20 blur-3xl animate-pulse-subtle"
+                    {/* Decorative Neo-Material morphing shapes */}
+                    <div className="absolute top-1/3 right-[15%] w-64 h-64 morphing-shape opacity-20"></div>
+                    <div 
+                        className="absolute bottom-1/4 left-[10%] w-72 h-72 rounded-full bg-accent/5 opacity-20 blur-3xl animate-pulse-subtle"
                         style={{ animationDelay: "1.5s" }}
                     ></div>
 
@@ -78,7 +80,7 @@ const Index = () => {
                         <div className="flex flex-col items-center space-y-10 text-center">
                             <div className="space-y-6 max-w-4xl">
                                 <div className="inline-block mb-6">
-                                    <div className="inline-flex items-center rounded-full border border-white/10 dark:border-white/5 bg-white/50 dark:bg-base-grey/20 backdrop-blur-md px-3 py-1 text-sm font-medium text-foreground/80 shadow-nm-inner-soft">
+                                    <div className="highlight-badge">
                                         <span className="flex h-2 w-2 rounded-full bg-accent-aurora-green mr-2 animate-pulse"></span>
                                         Built on MultiversX Blockchain
                                     </div>
@@ -86,11 +88,11 @@ const Index = () => {
 
                                 <h1 className="text-4xl font-bold sm:text-5xl md:text-6xl lg:text-7xl">
                                     MultiversX Tokens,{" "}
-                                    <span className="bg-clip-text text-transparent bg-gradient-to-r from-accent-amethyst to-accent-glow-cyan font-bold">
+                                    <span className="gradient-text">
                                         Made Simple & Secure
                                     </span>
                                 </h1>
-                                <p className="mx-auto max-w-[800px] text-foreground/80 text-lg md:text-xl">
+                                <p className="mx-auto max-w-[800px] text-muted-foreground text-lg md:text-xl">
                                     Effortlessly create your ESDT token, provide
                                     xExchange liquidity, manage supply, and
                                     control roles – all through intuitive
@@ -99,7 +101,7 @@ const Index = () => {
                             </div>
                             <div className="flex flex-col sm:flex-row gap-4 mt-4">
                                 <Button
-                                    className="neo-button px-6 py-2.5 text-base rounded-lg shadow-nm-md group relative overflow-hidden"
+                                    className="neo-button px-6 py-2.5 text-base rounded-lg ripple-container"
                                     size="lg"
                                     onClick={(e) => {
                                         createRipple(e);
@@ -126,7 +128,7 @@ const Index = () => {
                                 <Button
                                     variant="outline"
                                     size="lg"
-                                    className="border-border/50 bg-base-off-white/10 dark:bg-base-charcoal/20 backdrop-blur-sm hover:bg-base-off-white/20 dark:hover:bg-base-charcoal/30 rounded-lg shadow-nm-sm hover:shadow-nm-md transition-all duration-300 text-foreground/90"
+                                    className="border-border/20 bg-white/10 dark:bg-base-charcoal/20 backdrop-blur-sm hover:bg-white/20 dark:hover:bg-base-charcoal/30 rounded-lg shadow-nm-sm hover:shadow-nm-md transition-all duration-300 text-foreground/90"
                                     onClick={() => {
                                         const howItWorks =
                                             document.getElementById(
@@ -144,34 +146,34 @@ const Index = () => {
                     </div>
                 </section>
 
-                {/* How It Works Section */}
+                {/* How It Works Section - Updated with Neo-Material UI */}
                 <section id="how-it-works" className="py-20 relative">
-                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-base-grey/5 to-base-grey/10 z-0"></div>
+                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-muted/30 to-muted/20 z-0"></div>
                     <div className="container px-4 md:px-6 relative z-10">
                         <div className="text-center mb-16">
-                            <h2 className="section-title text-foreground">
+                            <h2 className="section-title">
                                 Get Your Token Live in Minutes
                             </h2>
-                            <p className="section-subtitle text-foreground/80">
+                            <p className="section-subtitle">
                                 Follow our simple process to create, deploy and
                                 manage your tokens on the MultiversX blockchain
                             </p>
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
                             {/* Step 1 */}
-                            <div className="relative group bg-card/80 dark:bg-card/60 backdrop-blur-lg rounded-xl p-6 border border-white/10 dark:border-white/5 shadow-nm-md hover:shadow-nm-lg transition-shadow duration-300 interactive-hover">
-                                <div className="absolute -top-4 -left-4 w-10 h-10 rounded-full bg-gradient-to-br from-accent-amethyst to-accent-glow-cyan flex items-center justify-center text-white font-bold shadow-nm-sm">
+                            <div className="neo-card relative group interactive-hover">
+                                <div className="absolute -top-4 -left-4 w-10 h-10 rounded-full bg-nm-accent-gradient flex items-center justify-center text-white font-bold shadow-nm-sm">
                                     1
                                 </div>
                                 <div className="pt-4">
                                     <div className="flex flex-col items-center text-center">
-                                        <div className="w-16 h-16 rounded-full bg-base-off-white/10 dark:bg-base-charcoal/20 flex items-center justify-center mb-6 shadow-nm-inner-soft group-hover:shadow-nm-sm group-hover:bg-base-off-white/20 dark:group-hover:bg-base-charcoal/30 transition-all duration-300">
-                                            <Wallet className="text-accent-amethyst h-7 w-7" />
+                                        <div className="feature-icon">
+                                            <Wallet className="h-6 w-6" />
                                         </div>
-                                        <h3 className="font-bold text-xl mb-3 text-foreground">
+                                        <h3 className="font-bold text-xl mb-3">
                                             Connect Securely
                                         </h3>
-                                        <p className="text-foreground/80">
+                                        <p className="text-muted-foreground">
                                             Link your preferred MultiversX
                                             wallet (Maiar App, Web Wallet,
                                             Ledger, Extension) in seconds.
@@ -181,19 +183,19 @@ const Index = () => {
                             </div>
 
                             {/* Step 2 */}
-                            <div className="relative group bg-card/80 dark:bg-card/60 backdrop-blur-lg rounded-xl p-6 border border-white/10 dark:border-white/5 shadow-nm-md hover:shadow-nm-lg transition-shadow duration-300 interactive-hover">
-                                <div className="absolute -top-4 -left-4 w-10 h-10 rounded-full bg-gradient-to-br from-accent-amethyst to-accent-glow-cyan flex items-center justify-center text-white font-bold shadow-nm-sm">
+                            <div className="neo-card relative group interactive-hover">
+                                <div className="absolute -top-4 -left-4 w-10 h-10 rounded-full bg-nm-accent-gradient flex items-center justify-center text-white font-bold shadow-nm-sm">
                                     2
                                 </div>
                                 <div className="pt-4">
                                     <div className="flex flex-col items-center text-center">
-                                        <div className="w-16 h-16 rounded-full bg-base-off-white/10 dark:bg-base-charcoal/20 flex items-center justify-center mb-6 shadow-nm-inner-soft group-hover:shadow-nm-sm group-hover:bg-base-off-white/20 dark:group-hover:bg-base-charcoal/30 transition-all duration-300">
-                                            <WandSparkles className="text-accent-amethyst h-7 w-7" />
+                                        <div className="feature-icon">
+                                            <WandSparkles className="h-6 w-6" />
                                         </div>
-                                        <h3 className="font-bold text-xl mb-3 text-foreground">
+                                        <h3 className="font-bold text-xl mb-3">
                                             Follow the Wizard
                                         </h3>
-                                        <p className="text-foreground/80">
+                                        <p className="text-muted-foreground">
                                             Step-by-step guidance walks you
                                             through token creation, liquidity
                                             provision, or management tasks.
@@ -203,19 +205,19 @@ const Index = () => {
                             </div>
 
                             {/* Step 3 */}
-                            <div className="relative group bg-card/80 dark:bg-card/60 backdrop-blur-lg rounded-xl p-6 border border-white/10 dark:border-white/5 shadow-nm-md hover:shadow-nm-lg transition-shadow duration-300 interactive-hover">
-                                <div className="absolute -top-4 -left-4 w-10 h-10 rounded-full bg-gradient-to-br from-accent-amethyst to-accent-glow-cyan flex items-center justify-center text-white font-bold shadow-nm-sm">
+                            <div className="neo-card relative group interactive-hover">
+                                <div className="absolute -top-4 -left-4 w-10 h-10 rounded-full bg-nm-accent-gradient flex items-center justify-center text-white font-bold shadow-nm-sm">
                                     3
                                 </div>
                                 <div className="pt-4">
                                     <div className="flex flex-col items-center text-center">
-                                        <div className="w-16 h-16 rounded-full bg-base-off-white/10 dark:bg-base-charcoal/20 flex items-center justify-center mb-6 shadow-nm-inner-soft group-hover:shadow-nm-sm group-hover:bg-base-off-white/20 dark:group-hover:bg-base-charcoal/30 transition-all duration-300">
-                                            <Signature className="text-accent-amethyst h-7 w-7" />
+                                        <div className="feature-icon">
+                                            <Signature className="h-6 w-6" />
                                         </div>
-                                        <h3 className="font-bold text-xl mb-3 text-foreground">
+                                        <h3 className="font-bold text-xl mb-3">
                                             Sign & Deploy
                                         </h3>
-                                        <p className="text-foreground/80">
+                                        <p className="text-muted-foreground">
                                             Confirm the transaction securely in
                                             your wallet to execute your action
                                             on the MultiversX blockchain.
@@ -227,15 +229,15 @@ const Index = () => {
                     </div>
                 </section>
 
-                {/* Features Section */}
+                {/* Features Section - Updated with Neo-Material UI */}
                 <section className="py-20 bg-background relative">
-                    <div className="absolute inset-0 bg-gradient-to-b from-base-grey/5 to-transparent z-0"></div>
+                    <div className="absolute inset-0 bg-gradient-to-b from-muted/20 to-transparent z-0"></div>
                     <div className="container px-4 md:px-6 relative z-10">
                         <div className="text-center mb-16">
-                            <h2 className="section-title text-foreground">
+                            <h2 className="section-title">
                                 Your Complete MultiversX Token Toolkit
                             </h2>
-                            <p className="section-subtitle text-foreground/80">
+                            <p className="section-subtitle">
                                 Everything you need to create and manage tokens
                                 on the MultiversX blockchain
                             </p>
@@ -244,17 +246,17 @@ const Index = () => {
                             {features.map((feature, index) => (
                                 <div
                                     key={index}
-                                    className="group bg-card/80 dark:bg-card/60 backdrop-blur-lg rounded-xl p-5 border border-white/10 dark:border-white/5 shadow-nm-md hover:shadow-nm-lg transition-shadow duration-300 data-stream"
+                                    className="neo-panel p-5 data-stream shadow-nm-md hover:shadow-nm-lg transition-shadow duration-300"
                                 >
                                     <div className="flex items-start space-x-4">
-                                        <div className="w-12 h-12 flex-shrink-0 rounded-lg bg-base-off-white/10 dark:bg-base-charcoal/20 flex items-center justify-center text-accent-amethyst shadow-nm-inner-soft group-hover:shadow-nm-sm group-hover:bg-base-off-white/20 dark:group-hover:bg-base-charcoal/30 transition-all duration-300 glow-effect">
+                                        <div className="w-12 h-12 flex-shrink-0 rounded-lg bg-white/10 dark:bg-base-charcoal/20 flex items-center justify-center text-accent shadow-nm-inner-soft group-hover:shadow-nm-sm group-hover:bg-white/20 dark:group-hover:bg-base-charcoal/30 transition-all duration-300 glow-effect">
                                             {feature.icon}
                                         </div>
                                         <div>
-                                            <h3 className="font-bold text-lg mb-1 text-foreground transition-colors">
+                                            <h3 className="font-bold text-lg mb-1 transition-colors">
                                                 {feature.title}
                                             </h3>
-                                            <p className="text-sm text-foreground/80">
+                                            <p className="text-sm text-muted-foreground">
                                                 {feature.description}
                                             </p>
                                         </div>
@@ -265,19 +267,19 @@ const Index = () => {
                     </div>
                 </section>
 
-                {/* Security Section */}
+                {/* Security Section - Updated with Neo-Material UI */}
                 <section className="py-20 relative">
-                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-base-grey/5 to-base-grey/10 z-0"></div>
+                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-muted/30 to-muted/20 z-0"></div>
                     <div className="container px-4 md:px-6 relative z-10">
-                        <div className="max-w-3xl mx-auto bg-card/80 dark:bg-card/60 backdrop-blur-xl rounded-xl p-8 border border-white/10 dark:border-white/5 shadow-nm-lg">
+                        <div className="frosted-panel max-w-3xl mx-auto backdrop-blur-xl p-8">
                             <div className="text-center mb-10">
-                                <div className="w-16 h-16 mx-auto rounded-full bg-base-off-white/10 dark:bg-base-charcoal/20 flex items-center justify-center mb-4 shadow-nm-inner-soft">
-                                    <Lock className="text-accent-amethyst h-7 w-7" />
+                                <div className="w-16 h-16 mx-auto rounded-full bg-white/10 dark:bg-base-charcoal/20 flex items-center justify-center mb-4 shadow-nm-inner-soft">
+                                    <Lock className="text-accent h-7 w-7" />
                                 </div>
-                                <h2 className="text-3xl font-bold sm:text-4xl text-foreground">
+                                <h2 className="text-3xl font-bold sm:text-4xl">
                                     Security is Paramount
                                 </h2>
-                                <p className="mt-4 text-foreground/80 md:text-lg">
+                                <p className="mt-4 text-muted-foreground md:text-lg">
                                     Your tokens deserve the highest level of
                                     protection
                                 </p>
@@ -292,10 +294,10 @@ const Index = () => {
                                             <CheckCircle className="text-base-charcoal h-4 w-4" />
                                         </div>
                                         <div>
-                                            <h3 className="font-bold text-lg mb-1 text-foreground">
+                                            <h3 className="font-bold text-lg mb-1">
                                                 {point.title}
                                             </h3>
-                                            <p className="text-foreground/80 text-sm">
+                                            <p className="text-muted-foreground text-sm">
                                                 {point.description}
                                             </p>
                                         </div>
@@ -306,7 +308,7 @@ const Index = () => {
                     </div>
                 </section>
 
-                {/* Use Cases Section */}
+                {/* Use Cases Section - Updated with Neo-Material UI */}
                 <section className="py-20 bg-background relative">
                     <div className="absolute inset-0 bg-gradient-to-t from-transparent to-muted/20 z-0"></div>
                     <div className="container px-4 md:px-6 relative z-10">
@@ -323,10 +325,10 @@ const Index = () => {
                             {useCases.map((useCase, index) => (
                                 <Card
                                     key={index}
-                                    className="neo-card border-border/20 hover:border-elven-muted/30 glow-effect interactive-hover"
+                                    className="neo-card glow-effect interactive-hover"
                                 >
                                     <div className="flex flex-col items-center text-center">
-                                        <div className="rounded-full w-16 h-16 bg-elven-muted/20 dark:bg-elven-muted/10 flex items-center justify-center mb-5 group-hover:bg-elven-muted/30 dark:group-hover:bg-elven-muted/20 shadow-neo-inner group-hover:shadow-neo-sm transition-all duration-300">
+                                        <div className="rounded-full w-16 h-16 bg-muted/20 dark:bg-muted/10 flex items-center justify-center mb-5 shadow-nm-inner-soft">
                                             {useCase.icon}
                                         </div>
                                         <h3 className="text-xl font-semibold mb-3">
@@ -342,10 +344,10 @@ const Index = () => {
                     </div>
                 </section>
 
-                {/* Final CTA */}
+                {/* Final CTA - Updated with Neo-Material UI */}
                 <section className="py-20">
                     <div className="container px-4 md:px-6">
-                        <div className="bg-gradient-to-r from-accent-amethyst/80 to-accent-glow-cyan/80 rounded-xl p-10 md:p-16 relative overflow-hidden shadow-nm-lg">
+                        <div className="neo-panel bg-nm-accent-gradient rounded-xl p-10 md:p-16 relative overflow-hidden shadow-nm-lg">
                             <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10"></div>
                             <div className="relative z-10 flex flex-col items-center text-center">
                                 <div className="w-16 h-16 rounded-full bg-white/20 dark:bg-base-charcoal/30 flex items-center justify-center mb-6 shadow-nm-inner-soft backdrop-blur-sm">
@@ -360,7 +362,7 @@ const Index = () => {
                                     with our secure and easy-to-use platform.
                                 </p>
                                 <Button
-                                    className="neo-button px-8 py-3 text-lg rounded-lg shadow-nm-md group relative overflow-hidden bg-white dark:bg-base-charcoal text-accent-amethyst dark:text-accent-glow-cyan hover:bg-opacity-90 dark:hover:bg-opacity-90"
+                                    className="ripple-container bg-white dark:bg-base-charcoal text-accent dark:text-accent px-8 py-3 text-lg rounded-lg shadow-nm-md hover:bg-opacity-90 dark:hover:bg-opacity-90"
                                     size="lg"
                                     onClick={(e) => {
                                         createRipple(e);
@@ -371,7 +373,7 @@ const Index = () => {
                                     {rippleElements.map((ripple) => (
                                         <span
                                             key={ripple.id}
-                                            className="ripple bg-accent-amethyst/30"
+                                            className="ripple bg-accent/30"
                                             style={{
                                                 left: ripple.left,
                                                 top: ripple.top,
@@ -396,37 +398,37 @@ const Index = () => {
 
 const features = [
     {
-        icon: <WandSparkles className="h-6 w-6 text-accent-amethyst" />,
+        icon: <WandSparkles className="h-6 w-6" />,
         title: "Effortless Token Creation",
         description:
             "Generate MultiversX ESDT tokens in minutes using our intuitive step-by-step wizard.",
     },
     {
-        icon: <Plus className="h-6 w-6 text-accent-amethyst" />,
+        icon: <Plus className="h-6 w-6" />,
         title: "Easy Supply Management",
         description:
             "Mint new tokens or burn existing ones directly through the dashboard.",
     },
     {
-        icon: <Droplets className="h-6 w-6 text-accent-amethyst" />,
+        icon: <Droplets className="h-6 w-6" />,
         title: "Provide xExchange Liquidity",
         description:
             "Seamlessly add liquidity for your newly created token to the xExchange.",
     },
     {
-        icon: <ArrowsUpFromLine className="h-6 w-6 text-accent-amethyst" />,
+        icon: <ArrowsUpFromLine className="h-6 w-6" />,
         title: "Upgrade Token Properties",
         description:
             "Modify your token's characteristics after issuance if properties allow.",
     },
     {
-        icon: <ShieldCheck className="h-6 w-6 text-accent-amethyst" />,
+        icon: <ShieldCheck className="h-6 w-6" />,
         title: "Role-Based Access Control",
         description:
             "Assign and manage special roles (e.g., minting, freezing) for your token.",
     },
     {
-        icon: <Coins className="h-6 w-6 text-accent-amethyst" />,
+        icon: <Coins className="h-6 w-6" />,
         title: "Token Operations",
         description:
             "Execute common token actions like transfers, freezing, and wiping.",
@@ -460,25 +462,25 @@ const useCases = [
         title: "Project Founders",
         description:
             "Launch your project's token and seed initial xExchange liquidity swiftly to bootstrap your ecosystem.",
-        icon: <Rocket className="h-8 w-8 text-accent-amethyst" />,
+        icon: <Rocket className="h-8 w-8 text-accent" />,
     },
     {
         title: "Community Leaders",
         description:
             "Issue and manage tokens to engage your audience, distribute rewards, or govern community decisions.",
-        icon: <Users2 className="h-8 w-8 text-accent-amethyst" />,
+        icon: <Users2 className="h-8 w-8 text-accent" />,
     },
     {
         title: "Creators & Brands",
         description:
             "Easily create fan tokens, loyalty points, or branded digital assets on the MultiversX network.",
-        icon: <Palette className="h-8 w-8 text-accent-amethyst" />,
+        icon: <Palette className="h-8 w-8 text-accent" />,
     },
     {
         title: "Developers",
         description:
             "Rapidly deploy, manage, and experiment with ESDT tokens without writing or deploying boilerplate smart contracts.",
-        icon: <Code className="h-8 w-8 text-accent-amethyst" />,
+        icon: <Code className="h-8 w-8 text-accent" />,
     },
 ];
 
