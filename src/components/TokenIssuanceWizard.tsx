@@ -1,6 +1,7 @@
+
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { WalletConnect, TokenIssuanceWizardComponent } from './ui'; // This is a placeholder reference
+import { TokenIssuanceWizardComponent } from '@/components/ui'; // Updated import path
 
 interface TokenIssuanceWizardProps {
   onComplete?: () => void;

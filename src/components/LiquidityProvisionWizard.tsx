@@ -1,6 +1,7 @@
+
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { WalletConnect, LiquidityProvisionWizardComponent } from './ui'; // This is a placeholder reference
+import { LiquidityProvisionWizardComponent } from '@/components/ui'; // Updated import path
 
 interface LiquidityProvisionWizardProps {
   onComplete?: () => void;
