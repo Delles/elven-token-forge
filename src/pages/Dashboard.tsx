@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
@@ -107,10 +106,6 @@ const Dashboard = () => {
 
     const handleIssueNewToken = () => {
         navigate("/issue-token");
-    };
-
-    const handleTokenDetails = (tokenId) => {
-        navigate(`/token/${tokenId}`);
     };
 
     const handleCopyToClipboard = (text) => {

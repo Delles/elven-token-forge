@@ -7,7 +7,6 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Dashboard from "./pages/Dashboard";
-import TokenDetails from "./pages/TokenDetails";
 import IssueToken from "./pages/IssueToken";
 import ProvideLiquidity from "./pages/ProvideLiquidity";
 
@@ -22,7 +21,6 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/token/:id" element={<TokenDetails />} />
           <Route path="/issue-token" element={<IssueToken />} />
           <Route path="/provide-liquidity" element={<ProvideLiquidity />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
