@@ -30,7 +30,7 @@ const ProvideLiquidity = () => {
           </p>
         </div>
         
-        <div className="max-w-4xl mx-auto animate-fade-in" style={{animationDelay: "200ms"}}>
+        <div className="max-w-4xl mx-auto bg-white/60 dark:bg-card/60 backdrop-blur-md border border-white/10 rounded-xl shadow-nm-lg p-6 md:p-8 animate-fade-in" style={{animationDelay: "200ms"}}>
           <LiquidityProvisionWizard onComplete={() => navigate('/dashboard')} />
         </div>
       </main>
