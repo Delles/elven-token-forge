@@ -20,6 +20,7 @@ const buttonVariants = cva(
         ghost: "hover:bg-accent/10 hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
         neo: "relative overflow-hidden bg-nm-accent-gradient text-white hover:brightness-110 active:brightness-95 shadow-nm-sm hover:shadow-nm-md active:shadow-nm-inner-soft",
+        "neo-outline": "relative overflow-hidden border border-white/10 bg-background/30 backdrop-blur-md text-foreground hover:bg-white/10 shadow-nm-sm hover:shadow-nm-md active:shadow-nm-inner-soft",
       },
       size: {
         default: "h-10 px-4 py-2",
