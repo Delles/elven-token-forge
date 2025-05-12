@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
@@ -107,7 +106,8 @@ const Dashboard = () => {
     const [tokens, setTokens] = useState(mockUserTokens);
     const [isLoading, setIsLoading] = useState(false);
     const [tokenSearchQuery, setTokenSearchQuery] = useState(""); // Immediate input value
-    const [debouncedTokenSearchQuery, setDebouncedTokenSearchQuery] = useState(""); // Debounced value for filtering
+    const [debouncedTokenSearchQuery, setDebouncedTokenSearchQuery] =
+        useState(""); // Debounced value for filtering
     const [activeTab, setActiveTab] = useState("overview"); // New state for tab navigation
 
     // Effect for debouncing
@@ -139,28 +139,32 @@ const Dashboard = () => {
 
     const handleRefreshData = () => {
         setIsLoading(true);
-        
+
         // Mock API fetch
         setTimeout(() => {
             // Simulate a fresh fetch of token data
-            const updatedTokens = [...mockUserTokens].map(token => ({
+            const updatedTokens = [...mockUserTokens].map((token) => ({
                 ...token,
-                balance: (parseInt(token.balance) + Math.floor(Math.random() * 1000)).toString(),
-                priceChange: (Math.random() * 10 - 5).toFixed(2),
-                priceDirection: Math.random() > 0.5 ? "up" : "down"
+                balance: (
+                    parseInt(token.balance) + Math.floor(Math.random() * 1000)
+                ).toString(),
+                priceChange: parseFloat((Math.random() * 10 - 5).toFixed(2)),
+                priceDirection: Math.random() > 0.5 ? "up" : "down",
             }));
-            
+
             setTokens(updatedTokens);
             // Update selected token with fresh data
-            const updatedSelectedToken = updatedTokens.find(t => t.id === selectedToken.id);
+            const updatedSelectedToken = updatedTokens.find(
+                (t) => t.id === selectedToken.id
+            );
             if (updatedSelectedToken) {
                 setSelectedToken(updatedSelectedToken);
             }
-            
+
             setIsLoading(false);
             setTokenSearchQuery(""); // Reset search query
             setDebouncedTokenSearchQuery(""); // Reset debounced search query
-            
+
             toast.success("Token data refreshed from blockchain");
         }, 1000);
     };
@@ -178,13 +182,13 @@ const Dashboard = () => {
     // Get token color based on ticker (for visualization purposes)
     const getTokenColor = (ticker) => {
         switch (ticker) {
-            case "EXT": 
+            case "EXT":
                 return "from-accent-amethyst to-accent-amethyst/60";
-            case "CMT": 
+            case "CMT":
                 return "from-accent-glow-cyan to-accent-glow-cyan/60";
-            case "UTL": 
+            case "UTL":
                 return "from-accent-aurora-green to-accent-aurora-green/60";
-            default: 
+            default:
                 return "from-accent-amethyst to-accent-glow-cyan";
         }
     };
@@ -216,9 +220,7 @@ const Dashboard = () => {
                                 variant="ghost"
                                 size="icon"
                                 className="h-6 w-6"
-                                onClick={() =>
-                                    handleCopyToClipboard(address)
-                                }
+                                onClick={() => handleCopyToClipboard(address)}
                             >
                                 <Copy className="h-3.5 w-3.5" />
                                 <span className="sr-only">Copy address</span>
@@ -246,7 +248,8 @@ const Dashboard = () => {
                             My Token Dashboard
                         </h1>
                         <p className="text-foreground/70">
-                            Manage your ESDT tokens with comprehensive analytics and controls
+                            Manage your ESDT tokens with comprehensive analytics
+                            and controls
                         </p>
                     </div>
                     <Button
@@ -255,7 +258,11 @@ const Dashboard = () => {
                         className="mt-4 md:mt-0"
                         disabled={isLoading}
                     >
-                        <RefreshCcw className={`h-4 w-4 mr-2 ${isLoading ? "animate-spin" : ""}`} />
+                        <RefreshCcw
+                            className={`h-4 w-4 mr-2 ${
+                                isLoading ? "animate-spin" : ""
+                            }`}
+                        />
                         Refresh Data
                     </Button>
                 </div>
@@ -271,7 +278,8 @@ const Dashboard = () => {
                                 You are not currently managing any tokens
                             </h3>
                             <p className="text-foreground/70 mb-8">
-                                Create a new token to get started with Token Forge
+                                Create a new token to get started with Token
+                                Forge
                             </p>
                             <div className="flex justify-center">
                                 <Button
@@ -288,16 +296,18 @@ const Dashboard = () => {
                     <>
                         {/* Token Overview Cards */}
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                            {tokens.map(token => (
-                                <Card 
-                                    key={token.id} 
+                            {tokens.map((token) => (
+                                <Card
+                                    key={token.id}
                                     className={`bg-white/80 dark:bg-card/80 shadow-nm-md border-l-4 ${
-                                        selectedToken.id === token.id 
-                                            ? `border-l-${token.ticker === "EXT" 
-                                                ? "accent-amethyst" 
-                                                : token.ticker === "CMT" 
-                                                    ? "accent-glow-cyan" 
-                                                    : "accent-aurora-green"}`
+                                        selectedToken.id === token.id
+                                            ? `border-l-${
+                                                  token.ticker === "EXT"
+                                                      ? "accent-amethyst"
+                                                      : token.ticker === "CMT"
+                                                      ? "accent-glow-cyan"
+                                                      : "accent-aurora-green"
+                                              }`
                                             : "border-l-transparent"
                                     } transition-all hover:shadow-nm-lg cursor-pointer`}
                                     onClick={() => handleSelectToken(token)}
@@ -305,19 +315,36 @@ const Dashboard = () => {
                                     <CardHeader className="pb-2">
                                         <div className="flex justify-between items-start">
                                             <div className="flex items-center">
-                                                <div className={`w-10 h-10 rounded-full bg-gradient-to-br ${getTokenColor(token.ticker)} flex items-center justify-center text-white shadow-nm-sm mr-3`}>
+                                                <div
+                                                    className={`w-10 h-10 rounded-full bg-gradient-to-br ${getTokenColor(
+                                                        token.ticker
+                                                    )} flex items-center justify-center text-white shadow-nm-sm mr-3`}
+                                                >
                                                     <span className="text-sm font-bold">
                                                         {token.ticker.charAt(0)}
                                                     </span>
                                                 </div>
                                                 <div>
-                                                    <CardTitle className="text-lg">{token.ticker}</CardTitle>
-                                                    <CardDescription>{token.name}</CardDescription>
+                                                    <CardTitle className="text-lg">
+                                                        {token.ticker}
+                                                    </CardTitle>
+                                                    <CardDescription>
+                                                        {token.name}
+                                                    </CardDescription>
                                                 </div>
                                             </div>
-                                            <Badge variant={token.priceDirection === "up" ? "success" : "destructive"} className="ml-auto">
+                                            <Badge
+                                                variant={
+                                                    token.priceDirection ===
+                                                    "up"
+                                                        ? "aurora"
+                                                        : "destructive"
+                                                }
+                                                className="ml-auto"
+                                            >
                                                 <span className="flex items-center">
-                                                    {token.priceDirection === "up" ? (
+                                                    {token.priceDirection ===
+                                                    "up" ? (
                                                         <TrendingUp className="h-3 w-3 mr-1" />
                                                     ) : (
                                                         <TrendingDown className="h-3 w-3 mr-1" />
@@ -330,22 +357,34 @@ const Dashboard = () => {
                                     <CardContent>
                                         <div className="space-y-2">
                                             <div className="flex justify-between items-center">
-                                                <span className="text-sm text-foreground/70">Your Balance:</span>
+                                                <span className="text-sm text-foreground/70">
+                                                    Your Balance:
+                                                </span>
                                                 <span className="font-medium">
-                                                    {Number(token.balance).toLocaleString()} {token.ticker}
+                                                    {Number(
+                                                        token.balance
+                                                    ).toLocaleString()}{" "}
+                                                    {token.ticker}
                                                 </span>
                                             </div>
                                             <div className="flex justify-between items-center">
-                                                <span className="text-sm text-foreground/70">Market Cap:</span>
+                                                <span className="text-sm text-foreground/70">
+                                                    Market Cap:
+                                                </span>
                                                 <span className="font-medium">
-                                                    ${Number(token.marketCap).toLocaleString()}
+                                                    $
+                                                    {Number(
+                                                        token.marketCap
+                                                    ).toLocaleString()}
                                                 </span>
                                             </div>
                                             <div className="flex justify-between items-center">
-                                                <span className="text-sm text-foreground/70">Liquidity Pool:</span>
+                                                <span className="text-sm text-foreground/70">
+                                                    Liquidity Pool:
+                                                </span>
                                                 <span className="font-medium">
-                                                    {token.hasLiquidityPool 
-                                                        ? `${token.lpTokens} LP` 
+                                                    {token.hasLiquidityPool
+                                                        ? `${token.lpTokens} LP`
                                                         : "No Pool"}
                                                 </span>
                                             </div>
@@ -358,41 +397,41 @@ const Dashboard = () => {
                         {/* Token Detail Tabs */}
                         <div className="mb-6">
                             <div className="flex border-b border-border/40 mb-6">
-                                <button 
+                                <button
                                     onClick={() => setActiveTab("overview")}
                                     className={`px-4 py-2 font-medium text-sm ${
-                                        activeTab === "overview" 
-                                            ? "text-accent-amethyst border-b-2 border-accent-amethyst" 
+                                        activeTab === "overview"
+                                            ? "text-accent-amethyst border-b-2 border-accent-amethyst"
                                             : "text-foreground/60 hover:text-foreground"
                                     }`}
                                 >
                                     Overview
                                 </button>
-                                <button 
+                                <button
                                     onClick={() => setActiveTab("management")}
                                     className={`px-4 py-2 font-medium text-sm ${
-                                        activeTab === "management" 
-                                            ? "text-accent-amethyst border-b-2 border-accent-amethyst" 
+                                        activeTab === "management"
+                                            ? "text-accent-amethyst border-b-2 border-accent-amethyst"
                                             : "text-foreground/60 hover:text-foreground"
                                     }`}
                                 >
                                     Token Management
                                 </button>
-                                <button 
+                                <button
                                     onClick={() => setActiveTab("analytics")}
                                     className={`px-4 py-2 font-medium text-sm ${
-                                        activeTab === "analytics" 
-                                            ? "text-accent-amethyst border-b-2 border-accent-amethyst" 
+                                        activeTab === "analytics"
+                                            ? "text-accent-amethyst border-b-2 border-accent-amethyst"
                                             : "text-foreground/60 hover:text-foreground"
                                     }`}
                                 >
                                     Analytics
                                 </button>
-                                <button 
+                                <button
                                     onClick={() => setActiveTab("activity")}
                                     className={`px-4 py-2 font-medium text-sm ${
-                                        activeTab === "activity" 
-                                            ? "text-accent-amethyst border-b-2 border-accent-amethyst" 
+                                        activeTab === "activity"
+                                            ? "text-accent-amethyst border-b-2 border-accent-amethyst"
                                             : "text-foreground/60 hover:text-foreground"
                                     }`}
                                 >
@@ -407,7 +446,11 @@ const Dashboard = () => {
                                     <div className="lg:col-span-4 space-y-6">
                                         {/* Token Information Panel */}
                                         <Card className="bg-white/80 dark:bg-card/80 shadow-nm-md overflow-hidden">
-                                            <div className={`h-1.5 w-full bg-gradient-to-r ${getTokenColor(selectedToken.ticker)}`}></div>
+                                            <div
+                                                className={`h-1.5 w-full bg-gradient-to-r ${getTokenColor(
+                                                    selectedToken.ticker
+                                                )}`}
+                                            ></div>
                                             <CardHeader className="pb-2">
                                                 <div className="flex items-center justify-between">
                                                     <div>
@@ -424,18 +467,28 @@ const Dashboard = () => {
                                             <CardContent>
                                                 <div className="space-y-4">
                                                     <div className="flex items-center gap-3">
-                                                        <div className={`w-12 h-12 rounded-full bg-gradient-to-br ${getTokenColor(selectedToken.ticker)} flex items-center justify-center shadow-nm-sm text-white`}>
+                                                        <div
+                                                            className={`w-12 h-12 rounded-full bg-gradient-to-br ${getTokenColor(
+                                                                selectedToken.ticker
+                                                            )} flex items-center justify-center shadow-nm-sm text-white`}
+                                                        >
                                                             <span className="font-bold text-lg">
-                                                                {selectedToken.ticker.charAt(0)}
+                                                                {selectedToken.ticker.charAt(
+                                                                    0
+                                                                )}
                                                             </span>
                                                         </div>
                                                         <div>
                                                             <h3 className="font-medium text-lg">
-                                                                {selectedToken.name}
+                                                                {
+                                                                    selectedToken.name
+                                                                }
                                                             </h3>
                                                             <div className="flex items-center gap-2 text-sm text-foreground/70">
                                                                 <span>
-                                                                    {selectedToken.ticker}
+                                                                    {
+                                                                        selectedToken.ticker
+                                                                    }
                                                                 </span>
                                                             </div>
                                                         </div>
@@ -448,9 +501,12 @@ const Dashboard = () => {
                                                         <div className="flex items-center gap-2">
                                                             <code
                                                                 className="text-sm bg-base-off-white/20 dark:bg-base-charcoal/30 px-2 py-1 rounded"
-                                                                title={selectedToken.id}
+                                                                title={
+                                                                    selectedToken.id
+                                                                }
                                                             >
-                                                                {selectedToken.id.length >
+                                                                {selectedToken
+                                                                    .id.length >
                                                                 20
                                                                     ? `${selectedToken.id.slice(
                                                                           0,
@@ -472,7 +528,8 @@ const Dashboard = () => {
                                                             >
                                                                 <Copy className="h-3.5 w-3.5" />
                                                                 <span className="sr-only">
-                                                                    Copy identifier
+                                                                    Copy
+                                                                    identifier
                                                                 </span>
                                                             </Button>
                                                         </div>
@@ -487,18 +544,23 @@ const Dashboard = () => {
                                                                 {Number(
                                                                     selectedToken.supply
                                                                 ).toLocaleString()}{" "}
-                                                                {selectedToken.ticker}
+                                                                {
+                                                                    selectedToken.ticker
+                                                                }
                                                             </div>
                                                         </div>
                                                         <div className="p-4 rounded-lg bg-base-off-white/10 dark:bg-base-charcoal/20 shadow-nm-inner-soft">
                                                             <div className="text-sm text-foreground/70 mb-1">
-                                                                Your Wallet Balance:
+                                                                Your Wallet
+                                                                Balance:
                                                             </div>
                                                             <div className="text-xl font-medium">
                                                                 {Number(
                                                                     selectedToken.balance
                                                                 ).toLocaleString()}{" "}
-                                                                {selectedToken.ticker}
+                                                                {
+                                                                    selectedToken.ticker
+                                                                }
                                                             </div>
                                                         </div>
                                                         <div className="p-4 rounded-lg bg-base-off-white/10 dark:bg-base-charcoal/20 shadow-nm-inner-soft">
@@ -506,7 +568,9 @@ const Dashboard = () => {
                                                                 Created At:
                                                             </div>
                                                             <div className="text-base font-medium">
-                                                                {new Date(selectedToken.createdAt).toLocaleDateString()}
+                                                                {new Date(
+                                                                    selectedToken.createdAt
+                                                                ).toLocaleDateString()}
                                                             </div>
                                                         </div>
                                                         <div className="p-4 rounded-lg bg-base-off-white/10 dark:bg-base-charcoal/20 shadow-nm-inner-soft">
@@ -514,7 +578,9 @@ const Dashboard = () => {
                                                                 Decimals:
                                                             </div>
                                                             <div className="text-base font-medium">
-                                                                {selectedToken.decimals}
+                                                                {
+                                                                    selectedToken.decimals
+                                                                }
                                                             </div>
                                                         </div>
                                                     </div>
@@ -527,7 +593,8 @@ const Dashboard = () => {
                                                             className="inline-flex items-center gap-1.5 text-sm px-3 py-1.5 rounded-md bg-base-off-white/10 dark:bg-base-charcoal/20 border border-border/20 hover:bg-base-off-white/20 dark:hover:bg-base-charcoal/30 transition-colors"
                                                         >
                                                             <ExternalLink className="h-3.5 w-3.5" />
-                                                            View on MultiversX Explorer
+                                                            View on MultiversX
+                                                            Explorer
                                                         </a>
                                                         {selectedToken.hasLiquidityPool ? (
                                                             <a
@@ -537,16 +604,22 @@ const Dashboard = () => {
                                                                 className="inline-flex items-center gap-1.5 text-sm px-3 py-1.5 rounded-md bg-base-off-white/10 dark:bg-base-charcoal/20 border border-border/20 hover:bg-base-off-white/20 dark:hover:bg-base-charcoal/30 transition-colors"
                                                             >
                                                                 <ExternalLink className="h-3.5 w-3.5" />
-                                                                View Pool on xExchange
+                                                                View Pool on
+                                                                xExchange
                                                             </a>
                                                         ) : (
                                                             <Button
                                                                 variant="outline"
                                                                 size="sm"
-                                                                onClick={() => navigate('/provide-liquidity')}
+                                                                onClick={() =>
+                                                                    navigate(
+                                                                        "/provide-liquidity"
+                                                                    )
+                                                                }
                                                             >
                                                                 <Plus className="h-3.5 w-3.5 mr-1.5" />
-                                                                Create Liquidity Pool
+                                                                Create Liquidity
+                                                                Pool
                                                             </Button>
                                                         )}
                                                     </div>
@@ -562,8 +635,8 @@ const Dashboard = () => {
                                                     {selectedToken.ticker}
                                                 </CardTitle>
                                                 <CardDescription className="text-foreground/70 text-sm">
-                                                    Special ESDT roles assigned to your
-                                                    wallet
+                                                    Special ESDT roles assigned
+                                                    to your wallet
                                                 </CardDescription>
                                             </CardHeader>
                                             <CardContent>
@@ -576,18 +649,23 @@ const Dashboard = () => {
                                                         )
                                                         .map((permission) => (
                                                             <Badge
-                                                                key={permission.id}
+                                                                key={
+                                                                    permission.id
+                                                                }
                                                                 variant="amethyst"
                                                                 className="px-3 py-1"
                                                             >
-                                                                {permission.label}
+                                                                {
+                                                                    permission.label
+                                                                }
                                                             </Badge>
                                                         ))}
-                                                    {selectedToken.properties.length ===
-                                                        0 && (
+                                                    {selectedToken.properties
+                                                        .length === 0 && (
                                                         <p className="text-sm text-foreground/70">
-                                                            You do not hold any special
-                                                            roles for this token.
+                                                            You do not hold any
+                                                            special roles for
+                                                            this token.
                                                         </p>
                                                     )}
                                                 </div>
@@ -642,9 +720,14 @@ const Dashboard = () => {
                                                                     <Plus className="h-4 w-4 text-accent-amethyst" />
                                                                 </div>
                                                                 <div className="text-left">
-                                                                    <div>Mint Tokens</div>
+                                                                    <div>
+                                                                        Mint
+                                                                        Tokens
+                                                                    </div>
                                                                     <div className="text-xs text-foreground/60">
-                                                                        Create new tokens
+                                                                        Create
+                                                                        new
+                                                                        tokens
                                                                     </div>
                                                                 </div>
                                                             </Button>
@@ -684,9 +767,14 @@ const Dashboard = () => {
                                                                     <Flame className="h-4 w-4 text-accent-glow-cyan" />
                                                                 </div>
                                                                 <div className="text-left">
-                                                                    <div>Burn Tokens</div>
+                                                                    <div>
+                                                                        Burn
+                                                                        Tokens
+                                                                    </div>
                                                                     <div className="text-xs text-foreground/60">
-                                                                        Remove from supply
+                                                                        Remove
+                                                                        from
+                                                                        supply
                                                                     </div>
                                                                 </div>
                                                             </Button>
@@ -702,15 +790,23 @@ const Dashboard = () => {
                                                             <Button
                                                                 variant="outline"
                                                                 className="justify-start text-left h-auto py-3 border-accent-amethyst/30 hover:border-accent-amethyst/60"
-                                                                onClick={() => navigate("/provide-liquidity")}
+                                                                onClick={() =>
+                                                                    navigate(
+                                                                        "/provide-liquidity"
+                                                                    )
+                                                                }
                                                             >
                                                                 <div className="w-8 h-8 rounded-md bg-accent-aurora-green/10 flex items-center justify-center shadow-nm-sm mr-3">
                                                                     <Layers className="h-4 w-4 text-accent-aurora-green" />
                                                                 </div>
                                                                 <div className="text-left">
-                                                                    <div>Add Liquidity</div>
+                                                                    <div>
+                                                                        Add
+                                                                        Liquidity
+                                                                    </div>
                                                                     <div className="text-xs text-foreground/60">
-                                                                        To xExchange
+                                                                        To
+                                                                        xExchange
                                                                     </div>
                                                                 </div>
                                                             </Button>
@@ -741,10 +837,12 @@ const Dashboard = () => {
                                                                 </div>
                                                                 <div className="text-left">
                                                                     <div>
-                                                                        Remove Liquidity
+                                                                        Remove
+                                                                        Liquidity
                                                                     </div>
                                                                     <div className="text-xs text-foreground/60">
-                                                                        From xExchange
+                                                                        From
+                                                                        xExchange
                                                                     </div>
                                                                 </div>
                                                             </Button>
@@ -754,7 +852,8 @@ const Dashboard = () => {
                                                     {/* Role & Ownership Management */}
                                                     <div>
                                                         <h4 className="text-sm font-medium text-foreground/70 mb-3 px-1">
-                                                            Role & Ownership Management
+                                                            Role & Ownership
+                                                            Management
                                                         </h4>
                                                         <Button
                                                             variant="outline"
@@ -768,7 +867,9 @@ const Dashboard = () => {
                                                                             "canMint",
                                                                             "canBurn",
                                                                             "canSetSpecialRoles",
-                                                                        ].includes(p)
+                                                                        ].includes(
+                                                                            p
+                                                                        )
                                                                 )
                                                                     ? "border-accent-amethyst/30 hover:border-accent-amethyst/60"
                                                                     : "opacity-60 cursor-not-allowed"
@@ -784,7 +885,9 @@ const Dashboard = () => {
                                                                                 "canMint",
                                                                                 "canBurn",
                                                                                 "canSetSpecialRoles",
-                                                                            ].includes(p)
+                                                                            ].includes(
+                                                                                p
+                                                                            )
                                                                     )
                                                                 )
                                                             }
@@ -799,7 +902,9 @@ const Dashboard = () => {
                                                                                 "canMint",
                                                                                 "canBurn",
                                                                                 "canSetSpecialRoles",
-                                                                            ].includes(p)
+                                                                            ].includes(
+                                                                                p
+                                                                            )
                                                                     )
                                                                 )
                                                                     ? "You do not have the required permissions (e.g., Change Owner, Mint, Burn, Set Roles) to manage token roles."
@@ -811,10 +916,12 @@ const Dashboard = () => {
                                                             </div>
                                                             <div className="text-left">
                                                                 <div>
-                                                                    Manage Token Roles
+                                                                    Manage Token
+                                                                    Roles
                                                                 </div>
                                                                 <div className="text-xs text-foreground/60">
-                                                                    Transfer or modify
+                                                                    Transfer or
+                                                                    modify
                                                                     permissions
                                                                 </div>
                                                             </div>
@@ -836,7 +943,8 @@ const Dashboard = () => {
                                                     </CardTitle>
                                                 </div>
                                                 <CardDescription className="text-foreground/70 text-sm">
-                                                    Your recent transactions involving{" "}
+                                                    Your recent transactions
+                                                    involving{" "}
                                                     {selectedToken.ticker}
                                                 </CardDescription>
                                             </CardHeader>
@@ -851,7 +959,9 @@ const Dashboard = () => {
                                                         <div className="w-2 h-2 rounded-full bg-accent-amethyst"></div>
                                                         <span className="text-foreground/80">
                                                             Minted 1,000{" "}
-                                                            {selectedToken.ticker}
+                                                            {
+                                                                selectedToken.ticker
+                                                            }
                                                         </span>
                                                         <span className="text-xs text-foreground/60 ml-auto">
                                                             2h ago
@@ -865,8 +975,11 @@ const Dashboard = () => {
                                                     >
                                                         <div className="w-2 h-2 rounded-full bg-accent-glow-cyan"></div>
                                                         <span className="text-foreground/80">
-                                                            Added liquidity with 500{" "}
-                                                            {selectedToken.ticker}
+                                                            Added liquidity with
+                                                            500{" "}
+                                                            {
+                                                                selectedToken.ticker
+                                                            }
                                                         </span>
                                                         <span className="text-xs text-foreground/60 ml-auto">
                                                             1d ago
@@ -887,33 +1000,66 @@ const Dashboard = () => {
                                                 <div className="w-6 h-6 rounded-full bg-accent-amethyst/20 flex items-center justify-center">
                                                     <Plus className="h-3.5 w-3.5 text-accent-amethyst" />
                                                 </div>
-                                                <span>Token Supply Management</span>
+                                                <span>
+                                                    Token Supply Management
+                                                </span>
                                             </CardTitle>
                                             <CardDescription>
-                                                Control the circulation of {selectedToken.ticker} tokens
+                                                Control the circulation of{" "}
+                                                {selectedToken.ticker} tokens
                                             </CardDescription>
                                         </CardHeader>
                                         <CardContent className="space-y-4">
                                             <div className="grid grid-cols-2 gap-4">
-                                                <Button variant="outline" className={`h-auto py-3 px-4 justify-start ${selectedToken.properties.includes("canMint") ? "" : "opacity-60 cursor-not-allowed"}`}>
+                                                <Button
+                                                    variant="outline"
+                                                    className={`h-auto py-3 px-4 justify-start ${
+                                                        selectedToken.properties.includes(
+                                                            "canMint"
+                                                        )
+                                                            ? ""
+                                                            : "opacity-60 cursor-not-allowed"
+                                                    }`}
+                                                >
                                                     <div className="text-left">
-                                                        <div className="font-medium">Mint Tokens</div>
-                                                        <div className="text-xs text-foreground/70">Create new tokens</div>
+                                                        <div className="font-medium">
+                                                            Mint Tokens
+                                                        </div>
+                                                        <div className="text-xs text-foreground/70">
+                                                            Create new tokens
+                                                        </div>
                                                     </div>
                                                 </Button>
-                                                <Button variant="outline" className={`h-auto py-3 px-4 justify-start ${selectedToken.properties.includes("canBurn") ? "" : "opacity-60 cursor-not-allowed"}`}>
+                                                <Button
+                                                    variant="outline"
+                                                    className={`h-auto py-3 px-4 justify-start ${
+                                                        selectedToken.properties.includes(
+                                                            "canBurn"
+                                                        )
+                                                            ? ""
+                                                            : "opacity-60 cursor-not-allowed"
+                                                    }`}
+                                                >
                                                     <div className="text-left">
-                                                        <div className="font-medium">Burn Tokens</div>
-                                                        <div className="text-xs text-foreground/70">Destroy tokens</div>
+                                                        <div className="font-medium">
+                                                            Burn Tokens
+                                                        </div>
+                                                        <div className="text-xs text-foreground/70">
+                                                            Destroy tokens
+                                                        </div>
                                                     </div>
                                                 </Button>
                                             </div>
                                             <div className="p-3 rounded-lg bg-accent-amethyst/5 text-sm">
-                                                Current total supply: {Number(selectedToken.supply).toLocaleString()} {selectedToken.ticker}
+                                                Current total supply:{" "}
+                                                {Number(
+                                                    selectedToken.supply
+                                                ).toLocaleString()}{" "}
+                                                {selectedToken.ticker}
                                             </div>
                                         </CardContent>
                                     </Card>
-                                    
+
                                     <Card className="bg-white/80 dark:bg-card/80 shadow-nm-md">
                                         <CardHeader>
                                             <CardTitle className="flex items-center gap-2">
@@ -923,27 +1069,52 @@ const Dashboard = () => {
                                                 <span>Access Control</span>
                                             </CardTitle>
                                             <CardDescription>
-                                                Manage roles and permissions for {selectedToken.ticker}
+                                                Manage roles and permissions for{" "}
+                                                {selectedToken.ticker}
                                             </CardDescription>
                                         </CardHeader>
                                         <CardContent>
                                             <div className="grid grid-cols-1 gap-3">
-                                                <Button variant="outline" className="justify-start h-auto py-3">
+                                                <Button
+                                                    variant="outline"
+                                                    className="justify-start h-auto py-3"
+                                                >
                                                     <div className="text-left">
-                                                        <div className="font-medium">Assign Special Roles</div>
-                                                        <div className="text-xs text-foreground/70">Grant permissions to other addresses</div>
+                                                        <div className="font-medium">
+                                                            Assign Special Roles
+                                                        </div>
+                                                        <div className="text-xs text-foreground/70">
+                                                            Grant permissions to
+                                                            other addresses
+                                                        </div>
                                                     </div>
                                                 </Button>
-                                                <Button variant="outline" className="justify-start h-auto py-3">
+                                                <Button
+                                                    variant="outline"
+                                                    className="justify-start h-auto py-3"
+                                                >
                                                     <div className="text-left">
-                                                        <div className="font-medium">Transfer Ownership</div>
-                                                        <div className="text-xs text-foreground/70">Change the token owner</div>
+                                                        <div className="font-medium">
+                                                            Transfer Ownership
+                                                        </div>
+                                                        <div className="text-xs text-foreground/70">
+                                                            Change the token
+                                                            owner
+                                                        </div>
                                                     </div>
                                                 </Button>
-                                                <Button variant="outline" className="justify-start h-auto py-3">
+                                                <Button
+                                                    variant="outline"
+                                                    className="justify-start h-auto py-3"
+                                                >
                                                     <div className="text-left">
-                                                        <div className="font-medium">Manage Pause State</div>
-                                                        <div className="text-xs text-foreground/70">Freeze or unfreeze all transactions</div>
+                                                        <div className="font-medium">
+                                                            Manage Pause State
+                                                        </div>
+                                                        <div className="text-xs text-foreground/70">
+                                                            Freeze or unfreeze
+                                                            all transactions
+                                                        </div>
                                                     </div>
                                                 </Button>
                                             </div>
@@ -963,34 +1134,52 @@ const Dashboard = () => {
                                                 <span>Token Analytics</span>
                                             </CardTitle>
                                             <CardDescription>
-                                                Performance metrics for {selectedToken.ticker}
+                                                Performance metrics for{" "}
+                                                {selectedToken.ticker}
                                             </CardDescription>
                                         </CardHeader>
                                         <CardContent>
                                             <div className="p-4 rounded-lg bg-base-off-white/10 dark:bg-base-charcoal/10 text-center mb-4">
-                                                <div className="text-sm text-foreground/70 mb-1">Chart will be displayed here</div>
+                                                <div className="text-sm text-foreground/70 mb-1">
+                                                    Chart will be displayed here
+                                                </div>
                                                 <div className="h-32 flex items-center justify-center">
                                                     <div className="w-full h-24 bg-gradient-to-r from-accent-amethyst/10 via-accent-glow-cyan/10 to-accent-aurora-green/10 rounded-lg"></div>
                                                 </div>
                                             </div>
-                                            
+
                                             <div className="grid grid-cols-3 gap-4">
                                                 <div className="p-3 rounded-lg bg-base-off-white/10 dark:bg-base-charcoal/20 shadow-nm-inner-soft">
-                                                    <div className="text-xs text-foreground/70 mb-1">Market Cap</div>
-                                                    <div className="text-lg font-medium">${Number(selectedToken.marketCap).toLocaleString()}</div>
+                                                    <div className="text-xs text-foreground/70 mb-1">
+                                                        Market Cap
+                                                    </div>
+                                                    <div className="text-lg font-medium">
+                                                        $
+                                                        {Number(
+                                                            selectedToken.marketCap
+                                                        ).toLocaleString()}
+                                                    </div>
                                                 </div>
                                                 <div className="p-3 rounded-lg bg-base-off-white/10 dark:bg-base-charcoal/20 shadow-nm-inner-soft">
-                                                    <div className="text-xs text-foreground/70 mb-1">Transactions</div>
-                                                    <div className="text-lg font-medium">1,432</div>
+                                                    <div className="text-xs text-foreground/70 mb-1">
+                                                        Transactions
+                                                    </div>
+                                                    <div className="text-lg font-medium">
+                                                        1,432
+                                                    </div>
                                                 </div>
                                                 <div className="p-3 rounded-lg bg-base-off-white/10 dark:bg-base-charcoal/20 shadow-nm-inner-soft">
-                                                    <div className="text-xs text-foreground/70 mb-1">Holders</div>
-                                                    <div className="text-lg font-medium">287</div>
+                                                    <div className="text-xs text-foreground/70 mb-1">
+                                                        Holders
+                                                    </div>
+                                                    <div className="text-lg font-medium">
+                                                        287
+                                                    </div>
                                                 </div>
                                             </div>
                                         </CardContent>
                                     </Card>
-                                    
+
                                     <Card className="bg-white/80 dark:bg-card/80 shadow-nm-md">
                                         <CardHeader>
                                             <CardTitle>Top Holders</CardTitle>
@@ -999,32 +1188,73 @@ const Dashboard = () => {
                                             <Table>
                                                 <TableHeader>
                                                     <TableRow>
-                                                        <TableHead className="w-[50px]">Rank</TableHead>
-                                                        <TableHead>Address</TableHead>
-                                                        <TableHead>Balance</TableHead>
-                                                        <TableHead className="text-right">Percentage</TableHead>
+                                                        <TableHead className="w-[50px]">
+                                                            Rank
+                                                        </TableHead>
+                                                        <TableHead>
+                                                            Address
+                                                        </TableHead>
+                                                        <TableHead>
+                                                            Balance
+                                                        </TableHead>
+                                                        <TableHead className="text-right">
+                                                            Percentage
+                                                        </TableHead>
                                                     </TableRow>
                                                 </TableHeader>
                                                 <TableBody>
                                                     <TableRow>
-                                                        <TableCell className="font-medium">1</TableCell>
-                                                        <TableCell>erd1...8a5w6u</TableCell>
-                                                        <TableCell>{Number(selectedToken.balance).toLocaleString()}</TableCell>
+                                                        <TableCell className="font-medium">
+                                                            1
+                                                        </TableCell>
+                                                        <TableCell>
+                                                            erd1...8a5w6u
+                                                        </TableCell>
+                                                        <TableCell>
+                                                            {Number(
+                                                                selectedToken.balance
+                                                            ).toLocaleString()}
+                                                        </TableCell>
                                                         <TableCell className="text-right">
-                                                            {(Number(selectedToken.balance) / Number(selectedToken.supply) * 100).toFixed(2)}%
+                                                            {(
+                                                                (Number(
+                                                                    selectedToken.balance
+                                                                ) /
+                                                                    Number(
+                                                                        selectedToken.supply
+                                                                    )) *
+                                                                100
+                                                            ).toFixed(2)}
+                                                            %
                                                         </TableCell>
                                                     </TableRow>
                                                     <TableRow>
-                                                        <TableCell className="font-medium">2</TableCell>
-                                                        <TableCell>erd1...x4dk8r</TableCell>
-                                                        <TableCell>250,000</TableCell>
-                                                        <TableCell className="text-right">25.00%</TableCell>
+                                                        <TableCell className="font-medium">
+                                                            2
+                                                        </TableCell>
+                                                        <TableCell>
+                                                            erd1...x4dk8r
+                                                        </TableCell>
+                                                        <TableCell>
+                                                            250,000
+                                                        </TableCell>
+                                                        <TableCell className="text-right">
+                                                            25.00%
+                                                        </TableCell>
                                                     </TableRow>
                                                     <TableRow>
-                                                        <TableCell className="font-medium">3</TableCell>
-                                                        <TableCell>erd1...z7p2ty</TableCell>
-                                                        <TableCell>125,000</TableCell>
-                                                        <TableCell className="text-right">12.50%</TableCell>
+                                                        <TableCell className="font-medium">
+                                                            3
+                                                        </TableCell>
+                                                        <TableCell>
+                                                            erd1...z7p2ty
+                                                        </TableCell>
+                                                        <TableCell>
+                                                            125,000
+                                                        </TableCell>
+                                                        <TableCell className="text-right">
+                                                            12.50%
+                                                        </TableCell>
                                                     </TableRow>
                                                 </TableBody>
                                             </Table>
@@ -1043,7 +1273,8 @@ const Dashboard = () => {
                                             <span>Recent Activity</span>
                                         </CardTitle>
                                         <CardDescription>
-                                            Recent transactions for {selectedToken.ticker}
+                                            Recent transactions for{" "}
+                                            {selectedToken.ticker}
                                         </CardDescription>
                                     </CardHeader>
                                     <CardContent>
@@ -1051,52 +1282,99 @@ const Dashboard = () => {
                                             <TableHeader>
                                                 <TableRow>
                                                     <TableHead>Type</TableHead>
-                                                    <TableHead>Amount</TableHead>
+                                                    <TableHead>
+                                                        Amount
+                                                    </TableHead>
                                                     <TableHead>Date</TableHead>
-                                                    <TableHead className="text-right">Transaction</TableHead>
+                                                    <TableHead className="text-right">
+                                                        Transaction
+                                                    </TableHead>
                                                 </TableRow>
                                             </TableHeader>
                                             <TableBody>
                                                 <TableRow>
                                                     <TableCell>
-                                                        <Badge variant="outline" className="bg-accent-amethyst/10 text-accent-amethyst border-accent-amethyst/20">
+                                                        <Badge
+                                                            variant="outline"
+                                                            className="bg-accent-amethyst/10 text-accent-amethyst border-accent-amethyst/20"
+                                                        >
                                                             Mint
                                                         </Badge>
                                                     </TableCell>
-                                                    <TableCell>1,000 {selectedToken.ticker}</TableCell>
-                                                    <TableCell>2 hours ago</TableCell>
+                                                    <TableCell>
+                                                        1,000{" "}
+                                                        {selectedToken.ticker}
+                                                    </TableCell>
+                                                    <TableCell>
+                                                        2 hours ago
+                                                    </TableCell>
                                                     <TableCell className="text-right">
-                                                        <a href="#" className="text-accent-amethyst hover:underline">View</a>
+                                                        <a
+                                                            href="#"
+                                                            className="text-accent-amethyst hover:underline"
+                                                        >
+                                                            View
+                                                        </a>
                                                     </TableCell>
                                                 </TableRow>
                                                 <TableRow>
                                                     <TableCell>
-                                                        <Badge variant="outline" className="bg-accent-glow-cyan/10 text-accent-glow-cyan border-accent-glow-cyan/20">
+                                                        <Badge
+                                                            variant="outline"
+                                                            className="bg-accent-glow-cyan/10 text-accent-glow-cyan border-accent-glow-cyan/20"
+                                                        >
                                                             Liquidity
                                                         </Badge>
                                                     </TableCell>
-                                                    <TableCell>500 {selectedToken.ticker}</TableCell>
-                                                    <TableCell>1 day ago</TableCell>
+                                                    <TableCell>
+                                                        500{" "}
+                                                        {selectedToken.ticker}
+                                                    </TableCell>
+                                                    <TableCell>
+                                                        1 day ago
+                                                    </TableCell>
                                                     <TableCell className="text-right">
-                                                        <a href="#" className="text-accent-amethyst hover:underline">View</a>
+                                                        <a
+                                                            href="#"
+                                                            className="text-accent-amethyst hover:underline"
+                                                        >
+                                                            View
+                                                        </a>
                                                     </TableCell>
                                                 </TableRow>
                                                 <TableRow>
                                                     <TableCell>
-                                                        <Badge variant="outline" className="bg-accent-aurora-green/10 text-accent-aurora-green border-accent-aurora-green/20">
+                                                        <Badge
+                                                            variant="outline"
+                                                            className="bg-accent-aurora-green/10 text-accent-aurora-green border-accent-aurora-green/20"
+                                                        >
                                                             Transfer
                                                         </Badge>
                                                     </TableCell>
-                                                    <TableCell>250 {selectedToken.ticker}</TableCell>
-                                                    <TableCell>3 days ago</TableCell>
+                                                    <TableCell>
+                                                        250{" "}
+                                                        {selectedToken.ticker}
+                                                    </TableCell>
+                                                    <TableCell>
+                                                        3 days ago
+                                                    </TableCell>
                                                     <TableCell className="text-right">
-                                                        <a href="#" className="text-accent-amethyst hover:underline">View</a>
+                                                        <a
+                                                            href="#"
+                                                            className="text-accent-amethyst hover:underline"
+                                                        >
+                                                            View
+                                                        </a>
                                                     </TableCell>
                                                 </TableRow>
                                             </TableBody>
                                         </Table>
                                         <div className="flex justify-center mt-4">
-                                            <Button variant="outline" size="sm" className="text-sm">
+                                            <Button
+                                                variant="outline"
+                                                size="sm"
+                                                className="text-sm"
+                                            >
                                                 View All Transactions
                                             </Button>
                                         </div>
@@ -1112,4 +1390,3 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
-
