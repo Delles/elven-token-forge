@@ -1,28 +1,12 @@
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
+// This is a simplified mock hook for development purposes only
 export const useWalletConnection = () => {
-  // This is a mock of wallet connection state
-  // In a real app, this would use the MultiversX SDK
-  const [isConnected, setIsConnected] = useState(false);
-  const [address, setAddress] = useState('');
-  
-  useEffect(() => {
-    // Simulate checking local storage for existing connection
-    const checkExistingConnection = () => {
-      // This is just for development purposes
-      // In production, we would check for a valid session
-      const mockConnected = localStorage.getItem('mock_wallet_connected') === 'true';
-      const mockAddress = mockConnected ? 
-        localStorage.getItem('mock_wallet_address') || 
-        'erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls8a5w6u' : '';
-      
-      setIsConnected(mockConnected);
-      setAddress(mockAddress);
-    };
-    
-    checkExistingConnection();
-  }, []);
+  // Hard-code isConnected to true for development purposes
+  // This simulates an always-connected state
+  const [isConnected] = useState(true);
+  const [address] = useState('erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls8a5w6u');
   
   return {
     isConnected,

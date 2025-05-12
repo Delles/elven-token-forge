@@ -1,54 +1,26 @@
-import React, { useState, useEffect } from 'react';
+
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { toast } from "@/components/ui/sonner";
 
-// This is a mock component that simulates wallet connection
-// In a real app, we would use the MultiversX SDK (erdjs)
+// This is a simple mock component that simulates wallet connection
 const WalletConnect = () => {
-  const [isConnected, setIsConnected] = useState(false);
-  const [address, setAddress] = useState('');
+  const [isConnected, setIsConnected] = useState(true); // Default to connected for development
+  const [address] = useState('erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls8a5w6u');
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const navigate = useNavigate();
   
-  useEffect(() => {
-    // Check for existing connection on component mount
-    const mockConnected = localStorage.getItem('mock_wallet_connected') === 'true';
-    const mockAddress = localStorage.getItem('mock_wallet_address') || 'erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls8a5w6u';
-    
-    if (mockConnected) {
-      setAddress(mockAddress);
-      setIsConnected(true);
-    }
-  }, []);
-  
   const connectWallet = (type: 'extension' | 'web' | 'maiar' | 'ledger') => {
-    // In a real app, we would use erdjs to connect the wallet
-    // This is just a simulation
-    setTimeout(() => {
-      const mockAddress = 'erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls8a5w6u';
-      setAddress(mockAddress);
-      setIsConnected(true);
-      setIsDialogOpen(false);
-      
-      // Store in localStorage for dev purposes
-      localStorage.setItem('mock_wallet_connected', 'true');
-      localStorage.setItem('mock_wallet_address', mockAddress);
-      
-      toast.success("Wallet connected successfully!");
-      navigate('/dashboard');  // Redirect to dashboard after connection
-    }, 1000);
+    setIsConnected(true);
+    setIsDialogOpen(false);
+    toast.success("Wallet connected successfully!");
+    navigate('/dashboard');  // Redirect to dashboard after connection
   };
   
   const disconnectWallet = () => {
     setIsConnected(false);
-    setAddress('');
-    
-    // Clear localStorage
-    localStorage.removeItem('mock_wallet_connected');
-    localStorage.removeItem('mock_wallet_address');
-    
     toast.info("Wallet disconnected");
     navigate('/');  // Redirect to home after disconnecting
   };
