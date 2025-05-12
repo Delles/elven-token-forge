@@ -1,7 +1,6 @@
-
 import React from "react";
 import { cn } from "@/lib/utils";
-import WalletConnect from "./WalletConnect";
+import { WalletConnect } from "@/components/ui/WalletConnect";
 import { useNavigate, useLocation } from "react-router-dom";
 import {
     NavigationMenu,
@@ -46,7 +45,9 @@ const NavBar = ({ className }: { className?: string }) => {
                 <div className="text-xl font-bold bg-clip-text text-transparent bg-nm-accent-gradient group-hover:opacity-90 transition-opacity">
                     Token Forge
                 </div>
-                <div className="text-xs text-muted-foreground hidden md:block">on MultiversX</div>
+                <div className="text-xs text-muted-foreground hidden md:block">
+                    on MultiversX
+                </div>
             </div>
 
             <div className="hidden md:flex items-center gap-1">
@@ -130,7 +131,9 @@ const NavBar = ({ className }: { className?: string }) => {
                                                             {feature.title}
                                                         </div>
                                                         <p className="line-clamp-2 text-sm leading-snug text-foreground/80">
-                                                            {feature.description}
+                                                            {
+                                                                feature.description
+                                                            }
                                                         </p>
                                                     </a>
                                                 </NavigationMenuLink>
