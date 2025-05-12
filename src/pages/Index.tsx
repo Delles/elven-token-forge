@@ -1,7 +1,6 @@
-
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import NavBar from "@/components/NavBar";
+
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -18,7 +17,7 @@ import {
     Users2,
     Palette,
     Code,
-    CheckCircle
+    CheckCircle,
 } from "lucide-react";
 
 const Index = () => {
@@ -65,15 +64,13 @@ const Index = () => {
 
     return (
         <div className="min-h-screen flex flex-col bg-background text-foreground">
-            <NavBar />
-
             <main className="flex-1">
                 {/* Hero Section */}
                 <section className="py-16 md:py-24 lg:py-32 relative overflow-hidden ambient-background">
                     {/* Background effects */}
                     <div className="absolute inset-0 bg-gradient-to-br from-background/80 to-secondary/20 backdrop-blur-sm z-0"></div>
                     <div className="absolute top-1/3 right-[15%] w-64 h-64 morphing-shape opacity-20"></div>
-                    <div 
+                    <div
                         className="absolute bottom-1/4 left-[10%] w-72 h-72 rounded-full bg-accent/5 opacity-20 blur-3xl animate-pulse-subtle"
                         style={{ animationDelay: "1.5s" }}
                     ></div>
@@ -95,9 +92,11 @@ const Index = () => {
                                     </span>
                                 </h1>
                                 <p className="mx-auto max-w-[800px] text-muted-foreground text-lg md:text-xl">
-                                    Effortlessly create your custom ESDT token, provide initial xExchange liquidity, 
-                                    manage token supply, and control roles – all through our intuitive, wizard-driven platform. 
-                                    No coding required.
+                                    Effortlessly create your custom ESDT token,
+                                    provide initial xExchange liquidity, manage
+                                    token supply, and control roles – all
+                                    through our intuitive, wizard-driven
+                                    platform. No coding required.
                                 </p>
                             </div>
                             <div className="flex flex-col sm:flex-row gap-4 mt-4">
@@ -131,7 +130,9 @@ const Index = () => {
                                     variant="outline"
                                     size="lg"
                                     className="border-border/20 bg-white/10 dark:bg-base-charcoal/20 backdrop-blur-sm hover:bg-white/20 dark:hover:bg-base-charcoal/30 rounded-lg shadow-nm-sm hover:shadow-nm-md transition-all duration-300 text-foreground/90"
-                                    onClick={() => scrollToSection("how-it-works")}
+                                    onClick={() =>
+                                        scrollToSection("how-it-works")
+                                    }
                                 >
                                     How It Works
                                 </Button>
@@ -149,7 +150,8 @@ const Index = () => {
                                 Launch Your Token in 3 Simple Steps
                             </h2>
                             <p className="section-subtitle">
-                                Our platform streamlines the entire token lifecycle on MultiversX. Here's how easy it is:
+                                Our platform streamlines the entire token
+                                lifecycle on MultiversX. Here's how easy it is:
                             </p>
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
@@ -167,8 +169,10 @@ const Index = () => {
                                             Connect Securely
                                         </h3>
                                         <p className="text-muted-foreground">
-                                            Instantly link your preferred MultiversX wallet (Maiar App, Web Wallet, Ledger, xPortal). 
-                                            Your keys never leave your control.
+                                            Instantly link your preferred
+                                            MultiversX wallet (Maiar App, Web
+                                            Wallet, Ledger, xPortal). Your keys
+                                            never leave your control.
                                         </p>
                                     </div>
                                 </div>
@@ -188,8 +192,11 @@ const Index = () => {
                                             Follow the Wizard
                                         </h3>
                                         <p className="text-muted-foreground">
-                                            Our intuitive wizards guide you step-by-step through token creation, 
-                                            liquidity setup, or ongoing management tasks. No technical jargon.
+                                            Our intuitive wizards guide you
+                                            step-by-step through token creation,
+                                            liquidity setup, or ongoing
+                                            management tasks. No technical
+                                            jargon.
                                         </p>
                                     </div>
                                 </div>
@@ -209,8 +216,10 @@ const Index = () => {
                                             Sign & Go Live
                                         </h3>
                                         <p className="text-muted-foreground">
-                                            Review all details, then confirm the transaction securely in your wallet. 
-                                            Your token or action is instantly live on the MultiversX blockchain.
+                                            Review all details, then confirm the
+                                            transaction securely in your wallet.
+                                            Your token or action is instantly
+                                            live on the MultiversX blockchain.
                                         </p>
                                     </div>
                                 </div>
@@ -228,8 +237,9 @@ const Index = () => {
                                 Your Complete MultiversX Token Toolkit
                             </h2>
                             <p className="section-subtitle">
-                                From initial concept to ongoing management, our platform provides comprehensive 
-                                features through simple interfaces
+                                From initial concept to ongoing management, our
+                                platform provides comprehensive features through
+                                simple interfaces
                             </p>
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
@@ -270,8 +280,9 @@ const Index = () => {
                                     Unyielding Security, Absolute Control
                                 </h2>
                                 <p className="mt-4 text-muted-foreground md:text-lg">
-                                    We're committed to the highest security standards, ensuring your 
-                                    interactions are safe and your assets remain yours
+                                    We're committed to the highest security
+                                    standards, ensuring your interactions are
+                                    safe and your assets remain yours
                                 </p>
                             </div>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-y-6 gap-x-10">
@@ -299,7 +310,10 @@ const Index = () => {
                 </section>
 
                 {/* Use Cases Section */}
-                <section id="use-cases" className="py-20 bg-background relative">
+                <section
+                    id="use-cases"
+                    className="py-20 bg-background relative"
+                >
                     <div className="absolute inset-0 bg-gradient-to-t from-transparent to-muted/20 z-0"></div>
                     <div className="container px-4 md:px-6 relative z-10">
                         <div className="text-center mb-16">
@@ -307,8 +321,9 @@ const Index = () => {
                                 Empowering Every MultiversX Vision
                             </h2>
                             <p className="section-subtitle">
-                                Whether you're a project founder, community builder, creator, or developer, 
-                                our platform is designed to help you succeed
+                                Whether you're a project founder, community
+                                builder, creator, or developer, our platform is
+                                designed to help you succeed
                             </p>
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -344,12 +359,15 @@ const Index = () => {
                                     <Rocket className="h-8 w-8 text-white" />
                                 </div>
                                 <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                                    Ready to Bring Your Token to Life on MultiversX?
+                                    Ready to Bring Your Token to Life on
+                                    MultiversX?
                                 </h2>
                                 <p className="text-white/80 max-w-xl mx-auto mb-8">
-                                    Join thousands of innovators building the future on MultiversX. 
-                                    Connect your wallet and experience the simplest way to launch and 
-                                    manage your ESDT tokens. Secure, intuitive, and powerful.
+                                    Join thousands of innovators building the
+                                    future on MultiversX. Connect your wallet
+                                    and experience the simplest way to launch
+                                    and manage your ESDT tokens. Secure,
+                                    intuitive, and powerful.
                                 </p>
                                 <Button
                                     className="ripple-container bg-white dark:bg-base-charcoal text-accent dark:text-accent px-8 py-3 text-lg rounded-lg shadow-nm-md hover:bg-opacity-90 dark:hover:bg-opacity-90"
@@ -431,7 +449,8 @@ const features = [
 const securityPoints = [
     {
         title: "Non-Custodial Architecture",
-        description: "You retain full control of your private keys and assets. Our platform never has access to your funds.",
+        description:
+            "You retain full control of your private keys and assets. Our platform never has access to your funds.",
     },
     {
         title: "Direct Wallet-Signed Transactions",
