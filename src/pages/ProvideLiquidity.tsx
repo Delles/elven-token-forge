@@ -1,5 +1,5 @@
 import Footer from "@/components/Footer";
-import LiquidityProvisionWizard from "@/components/LiquidityProvisionWizard";
+import LiquidityProvisionWizard from "@/features/LiquidityProvisionWizard/LiquidityProvisionWizard";
 import { useNavigate } from "react-router-dom";
 import { Coins } from "lucide-react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";

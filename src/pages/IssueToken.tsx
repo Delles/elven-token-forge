@@ -1,5 +1,5 @@
 import Footer from "@/components/Footer";
-import TokenIssuanceWizard from "@/components/TokenIssuanceWizard";
+import TokenIssuanceWizard from "@/features/TokenIssuanceWizard/TokenIssuanceWizard";
 import { useNavigate } from "react-router-dom";
 import { Sparkles } from "lucide-react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
